@@ -1,0 +1,804 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22E21DF7B5FC1C0E86357B80 /* Pods_HeroWarsButBetter_HeroWarsButBetterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288E9C59DA27E56C31F70307 /* Pods_HeroWarsButBetter_HeroWarsButBetterUITests.framework */; };
+		362B89112D034F4E005A017E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89102D034F4E005A017E /* AppDelegate.swift */; };
+		362B89132D034F4E005A017E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 362B89122D034F4E005A017E /* GameScene.sks */; };
+		362B89152D034F4E005A017E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 362B89142D034F4E005A017E /* Actions.sks */; };
+		362B89172D034F4E005A017E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89162D034F4E005A017E /* GameScene.swift */; };
+		362B89192D034F4E005A017E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89182D034F4E005A017E /* GameViewController.swift */; };
+		362B891C2D034F4E005A017E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 362B891B2D034F4E005A017E /* Base */; };
+		362B891E2D034F4F005A017E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 362B891D2D034F4F005A017E /* Assets.xcassets */; };
+		362B89212D034F4F005A017E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 362B89202D034F4F005A017E /* Base */; };
+		362B892B2D034F4F005A017E /* HeroWarsButBetterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B892A2D034F4F005A017E /* HeroWarsButBetterTests.swift */; };
+		362B89352D034F4F005A017E /* HeroWarsButBetterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89342D034F4F005A017E /* HeroWarsButBetterUITests.swift */; };
+		362B89372D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89362D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift */; };
+		362B89452D0357DB005A017E /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89442D0357DB005A017E /* MainMenuScene.swift */; };
+		6CA811274E2BB919D11D16E2 /* Pods_HeroWarsButBetterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06172D9CBA84D9AC91A8E2B6 /* Pods_HeroWarsButBetterTests.framework */; };
+		A9470F5C96296E46DC0F7179 /* Pods_HeroWarsButBetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1FF5B8EEFBA2572358A116 /* Pods_HeroWarsButBetter.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		362B89272D034F4F005A017E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 362B89052D034F4E005A017E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 362B890C2D034F4E005A017E;
+			remoteInfo = HeroWarsButBetter;
+		};
+		362B89312D034F4F005A017E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 362B89052D034F4E005A017E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 362B890C2D034F4E005A017E;
+			remoteInfo = HeroWarsButBetter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0531AD78C9F7AD1FD6B72FC7 /* Pods-HeroWarsButBetter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetter.debug.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetter/Pods-HeroWarsButBetter.debug.xcconfig"; sourceTree = "<group>"; };
+		06172D9CBA84D9AC91A8E2B6 /* Pods_HeroWarsButBetterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeroWarsButBetterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		288E9C59DA27E56C31F70307 /* Pods_HeroWarsButBetter_HeroWarsButBetterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeroWarsButBetter_HeroWarsButBetterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AE25FDD7CCD841FAC91B2EE /* Pods-HeroWarsButBetter-HeroWarsButBetterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetter-HeroWarsButBetterUITests.release.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetter-HeroWarsButBetterUITests/Pods-HeroWarsButBetter-HeroWarsButBetterUITests.release.xcconfig"; sourceTree = "<group>"; };
+		362B890D2D034F4E005A017E /* HeroWarsButBetter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroWarsButBetter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		362B89102D034F4E005A017E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		362B89122D034F4E005A017E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		362B89142D034F4E005A017E /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		362B89162D034F4E005A017E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		362B89182D034F4E005A017E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		362B891B2D034F4E005A017E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		362B891D2D034F4F005A017E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		362B89202D034F4F005A017E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		362B89262D034F4F005A017E /* HeroWarsButBetterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeroWarsButBetterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		362B892A2D034F4F005A017E /* HeroWarsButBetterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroWarsButBetterTests.swift; sourceTree = "<group>"; };
+		362B89302D034F4F005A017E /* HeroWarsButBetterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeroWarsButBetterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		362B89342D034F4F005A017E /* HeroWarsButBetterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroWarsButBetterUITests.swift; sourceTree = "<group>"; };
+		362B89362D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroWarsButBetterUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		362B89442D0357DB005A017E /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		79A61BB5E0EDD015FA8835BB /* Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetter-HeroWarsButBetterUITests/Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9816C88F98F31459B10D9415 /* Pods-HeroWarsButBetterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetterTests.release.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetterTests/Pods-HeroWarsButBetterTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E1FF5B8EEFBA2572358A116 /* Pods_HeroWarsButBetter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeroWarsButBetter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAC2E65E922409341F0C440E /* Pods-HeroWarsButBetterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetterTests.debug.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetterTests/Pods-HeroWarsButBetterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D79798E4AE20D237E8D9A916 /* Pods-HeroWarsButBetter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetter.release.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetter/Pods-HeroWarsButBetter.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		362B890A2D034F4E005A017E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9470F5C96296E46DC0F7179 /* Pods_HeroWarsButBetter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		362B89232D034F4F005A017E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CA811274E2BB919D11D16E2 /* Pods_HeroWarsButBetterTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		362B892D2D034F4F005A017E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22E21DF7B5FC1C0E86357B80 /* Pods_HeroWarsButBetter_HeroWarsButBetterUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		362B89042D034F4E005A017E = {
+			isa = PBXGroup;
+			children = (
+				362B890F2D034F4E005A017E /* HeroWarsButBetter */,
+				362B89292D034F4F005A017E /* HeroWarsButBetterTests */,
+				362B89332D034F4F005A017E /* HeroWarsButBetterUITests */,
+				362B890E2D034F4E005A017E /* Products */,
+				9F0B4239BF38CD7D8C81E753 /* Pods */,
+				9F6F8752CBB601AD80C825FD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		362B890E2D034F4E005A017E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				362B890D2D034F4E005A017E /* HeroWarsButBetter.app */,
+				362B89262D034F4F005A017E /* HeroWarsButBetterTests.xctest */,
+				362B89302D034F4F005A017E /* HeroWarsButBetterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		362B890F2D034F4E005A017E /* HeroWarsButBetter */ = {
+			isa = PBXGroup;
+			children = (
+				362B89432D0357D0005A017E /* Scenes */,
+				362B89102D034F4E005A017E /* AppDelegate.swift */,
+				362B89122D034F4E005A017E /* GameScene.sks */,
+				362B89142D034F4E005A017E /* Actions.sks */,
+				362B89182D034F4E005A017E /* GameViewController.swift */,
+				362B891A2D034F4E005A017E /* Main.storyboard */,
+				362B891D2D034F4F005A017E /* Assets.xcassets */,
+				362B891F2D034F4F005A017E /* LaunchScreen.storyboard */,
+			);
+			path = HeroWarsButBetter;
+			sourceTree = "<group>";
+		};
+		362B89292D034F4F005A017E /* HeroWarsButBetterTests */ = {
+			isa = PBXGroup;
+			children = (
+				362B892A2D034F4F005A017E /* HeroWarsButBetterTests.swift */,
+			);
+			path = HeroWarsButBetterTests;
+			sourceTree = "<group>";
+		};
+		362B89332D034F4F005A017E /* HeroWarsButBetterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				362B89342D034F4F005A017E /* HeroWarsButBetterUITests.swift */,
+				362B89362D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift */,
+			);
+			path = HeroWarsButBetterUITests;
+			sourceTree = "<group>";
+		};
+		362B89432D0357D0005A017E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				362B89162D034F4E005A017E /* GameScene.swift */,
+				362B89442D0357DB005A017E /* MainMenuScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		9F0B4239BF38CD7D8C81E753 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0531AD78C9F7AD1FD6B72FC7 /* Pods-HeroWarsButBetter.debug.xcconfig */,
+				D79798E4AE20D237E8D9A916 /* Pods-HeroWarsButBetter.release.xcconfig */,
+				79A61BB5E0EDD015FA8835BB /* Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig */,
+				2AE25FDD7CCD841FAC91B2EE /* Pods-HeroWarsButBetter-HeroWarsButBetterUITests.release.xcconfig */,
+				BAC2E65E922409341F0C440E /* Pods-HeroWarsButBetterTests.debug.xcconfig */,
+				9816C88F98F31459B10D9415 /* Pods-HeroWarsButBetterTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9F6F8752CBB601AD80C825FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E1FF5B8EEFBA2572358A116 /* Pods_HeroWarsButBetter.framework */,
+				288E9C59DA27E56C31F70307 /* Pods_HeroWarsButBetter_HeroWarsButBetterUITests.framework */,
+				06172D9CBA84D9AC91A8E2B6 /* Pods_HeroWarsButBetterTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		362B890C2D034F4E005A017E /* HeroWarsButBetter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 362B893A2D034F4F005A017E /* Build configuration list for PBXNativeTarget "HeroWarsButBetter" */;
+			buildPhases = (
+				C12CF32EFDF6A872F5EB0BC0 /* [CP] Check Pods Manifest.lock */,
+				362B89092D034F4E005A017E /* Sources */,
+				362B890A2D034F4E005A017E /* Frameworks */,
+				362B890B2D034F4E005A017E /* Resources */,
+				D46484395CB6F56CDBF59754 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeroWarsButBetter;
+			productName = HeroWarsButBetter;
+			productReference = 362B890D2D034F4E005A017E /* HeroWarsButBetter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		362B89252D034F4F005A017E /* HeroWarsButBetterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 362B893D2D034F4F005A017E /* Build configuration list for PBXNativeTarget "HeroWarsButBetterTests" */;
+			buildPhases = (
+				8775055E0A4BC28443FEE5F4 /* [CP] Check Pods Manifest.lock */,
+				362B89222D034F4F005A017E /* Sources */,
+				362B89232D034F4F005A017E /* Frameworks */,
+				362B89242D034F4F005A017E /* Resources */,
+				352163BB8D7CCF15FD42DDAA /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				362B89282D034F4F005A017E /* PBXTargetDependency */,
+			);
+			name = HeroWarsButBetterTests;
+			productName = HeroWarsButBetterTests;
+			productReference = 362B89262D034F4F005A017E /* HeroWarsButBetterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		362B892F2D034F4F005A017E /* HeroWarsButBetterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 362B89402D034F4F005A017E /* Build configuration list for PBXNativeTarget "HeroWarsButBetterUITests" */;
+			buildPhases = (
+				9212FF158DA89AA2CF346A83 /* [CP] Check Pods Manifest.lock */,
+				362B892C2D034F4F005A017E /* Sources */,
+				362B892D2D034F4F005A017E /* Frameworks */,
+				362B892E2D034F4F005A017E /* Resources */,
+				1D5B00D9E7616EA722D23500 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				362B89322D034F4F005A017E /* PBXTargetDependency */,
+			);
+			name = HeroWarsButBetterUITests;
+			productName = HeroWarsButBetterUITests;
+			productReference = 362B89302D034F4F005A017E /* HeroWarsButBetterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		362B89052D034F4E005A017E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					362B890C2D034F4E005A017E = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					362B89252D034F4F005A017E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 362B890C2D034F4E005A017E;
+					};
+					362B892F2D034F4F005A017E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 362B890C2D034F4E005A017E;
+					};
+				};
+			};
+			buildConfigurationList = 362B89082D034F4E005A017E /* Build configuration list for PBXProject "HeroWarsButBetter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 362B89042D034F4E005A017E;
+			productRefGroup = 362B890E2D034F4E005A017E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				362B890C2D034F4E005A017E /* HeroWarsButBetter */,
+				362B89252D034F4F005A017E /* HeroWarsButBetterTests */,
+				362B892F2D034F4F005A017E /* HeroWarsButBetterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		362B890B2D034F4E005A017E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				362B89132D034F4E005A017E /* GameScene.sks in Resources */,
+				362B891C2D034F4E005A017E /* Base in Resources */,
+				362B891E2D034F4F005A017E /* Assets.xcassets in Resources */,
+				362B89152D034F4E005A017E /* Actions.sks in Resources */,
+				362B89212D034F4F005A017E /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		362B89242D034F4F005A017E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		362B892E2D034F4F005A017E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D5B00D9E7616EA722D23500 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetter-HeroWarsButBetterUITests/Pods-HeroWarsButBetter-HeroWarsButBetterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetter-HeroWarsButBetterUITests/Pods-HeroWarsButBetter-HeroWarsButBetterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetter-HeroWarsButBetterUITests/Pods-HeroWarsButBetter-HeroWarsButBetterUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		352163BB8D7CCF15FD42DDAA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetterTests/Pods-HeroWarsButBetterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetterTests/Pods-HeroWarsButBetterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetterTests/Pods-HeroWarsButBetterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8775055E0A4BC28443FEE5F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HeroWarsButBetterTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9212FF158DA89AA2CF346A83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HeroWarsButBetter-HeroWarsButBetterUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C12CF32EFDF6A872F5EB0BC0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HeroWarsButBetter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D46484395CB6F56CDBF59754 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetter/Pods-HeroWarsButBetter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetter/Pods-HeroWarsButBetter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HeroWarsButBetter/Pods-HeroWarsButBetter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		362B89092D034F4E005A017E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				362B89172D034F4E005A017E /* GameScene.swift in Sources */,
+				362B89192D034F4E005A017E /* GameViewController.swift in Sources */,
+				362B89452D0357DB005A017E /* MainMenuScene.swift in Sources */,
+				362B89112D034F4E005A017E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		362B89222D034F4F005A017E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				362B892B2D034F4F005A017E /* HeroWarsButBetterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		362B892C2D034F4F005A017E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				362B89352D034F4F005A017E /* HeroWarsButBetterUITests.swift in Sources */,
+				362B89372D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		362B89282D034F4F005A017E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 362B890C2D034F4E005A017E /* HeroWarsButBetter */;
+			targetProxy = 362B89272D034F4F005A017E /* PBXContainerItemProxy */;
+		};
+		362B89322D034F4F005A017E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 362B890C2D034F4E005A017E /* HeroWarsButBetter */;
+			targetProxy = 362B89312D034F4F005A017E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		362B891A2D034F4E005A017E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				362B891B2D034F4E005A017E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		362B891F2D034F4F005A017E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				362B89202D034F4F005A017E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		362B89382D034F4F005A017E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		362B89392D034F4F005A017E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		362B893B2D034F4F005A017E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0531AD78C9F7AD1FD6B72FC7 /* Pods-HeroWarsButBetter.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ADSYFH326;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zhantore.HeroWarsButBetter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		362B893C2D034F4F005A017E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D79798E4AE20D237E8D9A916 /* Pods-HeroWarsButBetter.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ADSYFH326;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zhantore.HeroWarsButBetter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		362B893E2D034F4F005A017E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAC2E65E922409341F0C440E /* Pods-HeroWarsButBetterTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ADSYFH326;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zhantore.HeroWarsButBetterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeroWarsButBetter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HeroWarsButBetter";
+			};
+			name = Debug;
+		};
+		362B893F2D034F4F005A017E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9816C88F98F31459B10D9415 /* Pods-HeroWarsButBetterTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ADSYFH326;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zhantore.HeroWarsButBetterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HeroWarsButBetter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HeroWarsButBetter";
+			};
+			name = Release;
+		};
+		362B89412D034F4F005A017E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79A61BB5E0EDD015FA8835BB /* Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ADSYFH326;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zhantore.HeroWarsButBetterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HeroWarsButBetter;
+			};
+			name = Debug;
+		};
+		362B89422D034F4F005A017E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AE25FDD7CCD841FAC91B2EE /* Pods-HeroWarsButBetter-HeroWarsButBetterUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ADSYFH326;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = zhantore.HeroWarsButBetterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HeroWarsButBetter;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		362B89082D034F4E005A017E /* Build configuration list for PBXProject "HeroWarsButBetter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				362B89382D034F4F005A017E /* Debug */,
+				362B89392D034F4F005A017E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		362B893A2D034F4F005A017E /* Build configuration list for PBXNativeTarget "HeroWarsButBetter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				362B893B2D034F4F005A017E /* Debug */,
+				362B893C2D034F4F005A017E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		362B893D2D034F4F005A017E /* Build configuration list for PBXNativeTarget "HeroWarsButBetterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				362B893E2D034F4F005A017E /* Debug */,
+				362B893F2D034F4F005A017E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		362B89402D034F4F005A017E /* Build configuration list for PBXNativeTarget "HeroWarsButBetterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				362B89412D034F4F005A017E /* Debug */,
+				362B89422D034F4F005A017E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 362B89052D034F4E005A017E /* Project object */;
+}
