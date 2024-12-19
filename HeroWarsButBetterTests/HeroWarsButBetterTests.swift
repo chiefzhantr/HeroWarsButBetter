@@ -9,28 +9,168 @@ import XCTest
 @testable import HeroWarsButBetter
 
 final class HeroWarsButBetterTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func test_increasingXbyOne_OffsetsXandYInScreenSpace_by_16and8() {
+        let coordinateInWorldSpace = Vector(x: 1, y: 0)
+        let expectedCoordinateInScreenSpace = Vector(x: 16, y: 8)
+        XCTAssertEqual(convertWorldToScreen(coordinateInWorldSpace), expectedCoordinateInScreenSpace)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func test_increasingXbyOne_OffsetsXandYInScreenSpace_by_minus16and8() {
+        let coordinateInWorldSpace = Vector(x: 0, y: 1)
+        let expectedCoordinateInScreenSpace = Vector(x: -16, y: 8)
+        XCTAssertEqual(convertWorldToScreen(coordinateInWorldSpace), expectedCoordinateInScreenSpace)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func test_linearBehaviourOf_convertWorldToScreen() {
+        let worldCoordinates = [
+            Vector(x: -1, y: 2),
+            Vector(x: 2, y: 2),
+            Vector(x: 2, y: -1),
+            Vector(x: -1, y: 0),
+            Vector(x: 0, y: -1),
+            Vector(x: -1, y: -1),
+        ]
+        let expectedCoordinates = [
+            Vector(x: -48, y: 8),
+            Vector(x: 0, y: 32),
+            Vector(x: 48, y: 8),
+            Vector(x: -16, y: -8),
+            Vector(x: 16, y: -8),
+            Vector(x: 0, y: -16),
+        ]
+        for i in 0 ..< worldCoordinates.count {
+            XCTAssertEqual(convertWorldToScreen(worldCoordinates[i]), expectedCoordinates[i])
         }
     }
-
+    
+    func test_convertWorldToScreen_increasingZByOne_increasesScreenSpaceYby8() {
+        let coordinateInWorldSpace = Vector(x: 1, y: 0, z: 1)
+        let expectedCoordinateInScreenSpace = Vector(x: 16, y: 16, z: 0)
+        XCTAssertEqual(convertWorldToScreen(coordinateInWorldSpace), expectedCoordinateInScreenSpace)
+    }
+    
+    func test_convertWorldToScreen_linearity_for3rdDimension() {
+        let worldSpaceCoordinates = [
+            Vector(x: 1, y: 0, z: 1),
+            Vector(x: 1, y: 1, z: 2),
+            Vector(x: -1, y: 0, z: 1),
+            Vector(x: -1, y: 2, z: 2)
+        ]
+        
+        let expectedInScreenSpaceCoordinates = [
+            Vector(x: 16, y: 16),
+            Vector(x: 0, y: 32),
+            Vector(x: -16, y: 0),
+            Vector(x: -48, y: 24)
+        ]
+        for i in 0 ..< worldSpaceCoordinates.count {
+            XCTAssertEqual(convertWorldToScreen(worldSpaceCoordinates[i]), expectedInScreenSpaceCoordinates[i])
+        }
+    }
+    
+    func test_convertWorldToZPosition_for2DCoordinates() {
+        let testcases: [(coord: Vector, before: [Vector], behind: [Vector])] = [
+            (Vector(x: -1, y: -1), [Vector(x: -1, y: 0), Vector(x: 0, y: -1)], []),
+            (Vector(x: 0, y: 0), [Vector(x: 0, y: 1), Vector(x: 1, y: 0)], [Vector(x: -1, y: 0), Vector(x: 0, y: -1)]),
+            (Vector(x: 1, y: 0), [Vector(x: 1, y: 1), Vector(x: 2, y: 0)], [Vector(x: 0, y: 0), Vector(x: 1, y: -1)])
+        ]
+        
+        for testcase in testcases {
+            for beforeCoord in testcase.before {
+                XCTAssertGreaterThan(convertWorldToZPosition(testcase.coord), convertWorldToZPosition(beforeCoord))
+            }
+            for behindCoord in testcase.behind {
+                XCTAssertLessThan(convertWorldToZPosition(testcase.coord), convertWorldToZPosition(behindCoord))
+            }
+        }
+    }
+    
+    func test_convertWorldToZPosition_for3DCoordinates() {
+        let testcases: [(coord: Vector, before: [Vector], behind: [Vector])] = [
+            (Vector(x: -1, y: 0, z: 1), [Vector(x: 0, y: 0, z: 0), Vector(x: 0, y: 1, z: 0)], []),
+            (Vector(x: 1, y: 1, z: 1), [Vector(x: 1, y: 1, z: 0), Vector(x: 1, y: 2, z: 0)], [Vector(x: 1, y: 1, z: 2), Vector(x: 1, y: 0, z: 1)]),
+            (Vector(x: -1, y: 2, z: 1), [Vector(x: -1, y: 2, z: 0), Vector(x: 0, y: 2, z: 0)], [Vector(x: -1, y: 2, z: 2)])
+        ]
+        
+        for testcase in testcases {
+            for beforeCoord in testcase.before {
+                XCTAssertGreaterThan(convertWorldToZPosition(testcase.coord), convertWorldToZPosition(beforeCoord))
+            }
+            for behindCoord in testcase.behind {
+                XCTAssertLessThan(convertWorldToZPosition(testcase.coord), convertWorldToZPosition(behindCoord))
+            }
+        }
+    }
+    
+    func test_rotateCoordinate_returnsInputCoordinate_forDefaultRotation() {
+        let inputCoordinates = [
+            Vector(x: -1, y: 1, z: 0),
+            Vector(x: -3, y: 1, z: -2),
+            Vector(x: 3, y: 3, z: 2),
+        ]
+        
+        for coord in inputCoordinates {
+            XCTAssertEqual(rotateCoordinate(coord, direction: .defaultRotation), coord)
+        }
+    }
+    
+    func test_rotateCoordinate_returnsInputCoordinate_forClockWiseRotation() {
+        let inputCoordinates = [
+            Vector(x: 2, y: -5, z: 0),
+            Vector(x: 3, y: 1, z: 0),
+            Vector(x: -7, y: 3, z: 0),
+            Vector(x: -2, y: -4, z: 0),
+        ]
+        
+        let expectedCoordinates = [
+            Vector(x: 5, y: 2, z: 0),
+            Vector(x: -1, y: 3, z: 0),
+            Vector(x: -3, y: -7, z: 0),
+            Vector(x: 4, y: -2, z: 0),
+        ]
+        
+        for i in 0 ..< inputCoordinates.count {
+            XCTAssertEqual(rotateCoordinate(inputCoordinates[i], direction: .defaultRotation.rotated90DegreesCounterClockwise), expectedCoordinates[i])
+        }
+    }
+    
+    func test_rotateCoordinate_doesNotChangeZProperty() {
+        let inputCoordinates = [
+            Vector(x: 2, y: -5, z: 5),
+            Vector(x: 3, y: 1, z: -2),
+            Vector(x: -7, y: 3, z: 4),
+            Vector(x: -2, y: -4, z: -8),
+        ]
+        
+        for coord in inputCoordinates {
+            XCTAssertEqual(rotateCoordinate(coord, direction: .defaultRotation.rotated90DegreesClockwise).z, coord.z)
+        }
+    }
+    
+    func test_convertWorldToScreen_takesRotationIntoAccount() {
+        let rotations: [Rotation] = [.degrees45, .degrees135, .degrees225, .degrees315]
+        
+        for _ in 0 ..< 20 {
+            for rotation in rotations {
+                let coord = Vector.random
+                let convertedCoordinate = convertWorldToScreen(coord, direction: rotation)
+                let rotatedCoordinate = rotateCoordinate(coord, direction: rotation)
+                let expectedCoordinate = convertWorldToScreen(rotatedCoordinate)
+                XCTAssertEqual(convertedCoordinate, expectedCoordinate)
+            }
+        }
+    }
+    
+    func test_convertWorldToZPosition_takesRotationIntoAccount() {
+        let rotations: [Rotation] = [.degrees45, .degrees135, .degrees225, .degrees315]
+        
+        for _ in 0 ..< 20 {
+            for rotation in rotations {
+                let coord = Vector.random
+                let convertedCoordinate = convertWorldToZPosition(coord, direction: rotation)
+                let rotatedCoordinate = rotateCoordinate(coord, direction: rotation)
+                let expectedCoordinate = convertWorldToZPosition(rotatedCoordinate)
+                XCTAssertEqual(convertedCoordinate, expectedCoordinate)
+            }
+        }
+    }
 }

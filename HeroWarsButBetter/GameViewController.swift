@@ -12,7 +12,6 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     private let mainMenuScene = MainMenuScene()
-    private let gameScene = GameScene()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -20,6 +20,8 @@
 		362B89352D034F4F005A017E /* HeroWarsButBetterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89342D034F4F005A017E /* HeroWarsButBetterUITests.swift */; };
 		362B89372D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89362D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift */; };
 		362B89452D0357DB005A017E /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B89442D0357DB005A017E /* MainMenuScene.swift */; };
+		3682FB412D142F87002BA9A0 /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3682FB402D142F87002BA9A0 /* SettingsScene.swift */; };
+		36A89FA02D147B82008123CA /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A89F9F2D147B82008123CA /* Vector.swift */; };
 		6CA811274E2BB919D11D16E2 /* Pods_HeroWarsButBetterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06172D9CBA84D9AC91A8E2B6 /* Pods_HeroWarsButBetterTests.framework */; };
 		A9470F5C96296E46DC0F7179 /* Pods_HeroWarsButBetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1FF5B8EEFBA2572358A116 /* Pods_HeroWarsButBetter.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		362B89342D034F4F005A017E /* HeroWarsButBetterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroWarsButBetterUITests.swift; sourceTree = "<group>"; };
 		362B89362D034F4F005A017E /* HeroWarsButBetterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroWarsButBetterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		362B89442D0357DB005A017E /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		3682FB402D142F87002BA9A0 /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
+		36A89F9F2D147B82008123CA /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		79A61BB5E0EDD015FA8835BB /* Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetter-HeroWarsButBetterUITests/Pods-HeroWarsButBetter-HeroWarsButBetterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9816C88F98F31459B10D9415 /* Pods-HeroWarsButBetterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroWarsButBetterTests.release.xcconfig"; path = "Target Support Files/Pods-HeroWarsButBetterTests/Pods-HeroWarsButBetterTests.release.xcconfig"; sourceTree = "<group>"; };
 		9E1FF5B8EEFBA2572358A116 /* Pods_HeroWarsButBetter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeroWarsButBetter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,7 @@
 		362B890F2D034F4E005A017E /* HeroWarsButBetter */ = {
 			isa = PBXGroup;
 			children = (
+				36A89F9E2D147B76008123CA /* Vector */,
 				362B89432D0357D0005A017E /* Scenes */,
 				362B89102D034F4E005A017E /* AppDelegate.swift */,
 				362B89122D034F4E005A017E /* GameScene.sks */,
@@ -155,8 +160,17 @@
 			children = (
 				362B89162D034F4E005A017E /* GameScene.swift */,
 				362B89442D0357DB005A017E /* MainMenuScene.swift */,
+				3682FB402D142F87002BA9A0 /* SettingsScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		36A89F9E2D147B76008123CA /* Vector */ = {
+			isa = PBXGroup;
+			children = (
+				36A89F9F2D147B82008123CA /* Vector.swift */,
+			);
+			path = Vector;
 			sourceTree = "<group>";
 		};
 		9F0B4239BF38CD7D8C81E753 /* Pods */ = {
@@ -445,6 +459,8 @@
 				362B89192D034F4E005A017E /* GameViewController.swift in Sources */,
 				362B89452D0357DB005A017E /* MainMenuScene.swift in Sources */,
 				362B89112D034F4E005A017E /* AppDelegate.swift in Sources */,
+				36A89FA02D147B82008123CA /* Vector.swift in Sources */,
+				3682FB412D142F87002BA9A0 /* SettingsScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
