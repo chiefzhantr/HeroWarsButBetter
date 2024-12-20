@@ -20,8 +20,9 @@ class GameScene: SKScene {
     
     var rotation = Rotation.defaultRotation
     let rootNode = SKNode()
+    let cameraNode = SKCameraNode()
     
-    let heroSprite : SKSpriteNode = {
+    let heroSprite: SKSpriteNode = {
         let sprite = SKSpriteNode(imageNamed: "hero")
         let screenPosition = convertWorldToScreen(Vector(x: -2, y: -2))
         sprite.position = CGPoint(x: screenPosition.x, y: screenPosition.y)
@@ -29,35 +30,39 @@ class GameScene: SKScene {
         return sprite
     }()
     
-    override func didMove(to view: SKView) {
-        addChild(heroSprite)
-        size = view.frame.size
-        scaleMode = .aspectFill
-        
-        let cameraNode = SKCameraNode()
-        let cameraScreenPosition = convertWorldToScreen(Vector(x: 2, y: 2))
-        cameraNode.position = CGPoint(x: cameraScreenPosition.x, y: cameraScreenPosition.y)
-        addChild(cameraNode)
-        self.camera = cameraNode
-        
-        addChild(rootNode)
-        
+    let rotateClockwiseButton: SKLabelNode = {
         let rotateClockwiseButton = SKLabelNode(text: "Rotate Clockwise")
         rotateClockwiseButton.fontName = "AvenirNext-Bold"
         rotateClockwiseButton.fontSize = 12
         rotateClockwiseButton.fontColor = SKColor.blue
         rotateClockwiseButton.position = CGPoint(x: 100, y: -100)
         rotateClockwiseButton.name = "rotateClockwiseButton"
-        addChild(rotateClockwiseButton)
-
+        return rotateClockwiseButton
+    }()
+    
+    let rotateCounterClockwiseButton: SKLabelNode = {
         let rotateCounterClockwiseButton = SKLabelNode(text: "Rotate CounterClockwise")
         rotateCounterClockwiseButton.fontName = "AvenirNext-Bold"
         rotateCounterClockwiseButton.fontSize = 12
         rotateCounterClockwiseButton.fontColor = SKColor.blue
         rotateCounterClockwiseButton.position = CGPoint(x: -100, y: -100)
         rotateCounterClockwiseButton.name = "rotateCounterClockwiseButton"
-        addChild(rotateCounterClockwiseButton)
+        return rotateCounterClockwiseButton
+    }()
+    
+    override func didMove(to view: SKView) {
         
+        addChild(heroSprite)
+        size = view.frame.size
+        scaleMode = .aspectFill
+        
+        let cameraScreenPosition = convertWorldToScreen(Vector(x: 2, y: 2))
+        cameraNode.position = CGPoint(x: cameraScreenPosition.x, y: cameraScreenPosition.y)
+        addChild(cameraNode)
+        self.camera = cameraNode
+        
+        addChild(rootNode)
+
         redraw()
     }
     
@@ -80,9 +85,15 @@ class GameScene: SKScene {
     }
     
     func redraw() {
+        let cameraScreenPosition = convertWorldToScreen(Vector(x: 2, y: 2), direction: rotation)
+        cameraNode.position = CGPoint(x: cameraScreenPosition.x, y: cameraScreenPosition.y)
+        
         for node in rootNode.children {
             node.removeFromParent()
         }
+        
+        rootNode.addChild(rotateClockwiseButton)
+        rootNode.addChild(rotateCounterClockwiseButton)
         
         for y in 0 ..< heightMap.count {
             for x in 0 ..< heightMap[y].count {
@@ -99,12 +110,12 @@ class GameScene: SKScene {
         }
     }
     
-    func rotateCW() {
+    @objc func rotateCW() {
         rotation = rotation.rotated90DegreesClockwise
         redraw()
     }
     
-    func rotateCCW() {
+    @objc func rotateCCW() {
         rotation = rotation.rotated90DegreesCounterClockwise
         redraw()
     }
