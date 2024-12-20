@@ -21,21 +21,14 @@ class GameScene: SKScene {
     var rotation = Rotation.defaultRotation
     let rootNode = SKNode()
     let cameraNode = SKCameraNode()
-    
-    let heroSprite: SKSpriteNode = {
-        let sprite = SKSpriteNode(imageNamed: "hero")
-        let screenPosition = convertWorldToScreen(Vector(x: -2, y: -2))
-        sprite.position = CGPoint(x: screenPosition.x, y: screenPosition.y)
-        sprite.zPosition = -Double(screenPosition.y)
-        return sprite
-    }()
+    let knightRotation = Rotation.degrees225
     
     let rotateClockwiseButton: SKLabelNode = {
         let rotateClockwiseButton = SKLabelNode(text: "Rotate Clockwise")
         rotateClockwiseButton.fontName = "AvenirNext-Bold"
-        rotateClockwiseButton.fontSize = 12
+        rotateClockwiseButton.fontSize = 7
         rotateClockwiseButton.fontColor = SKColor.blue
-        rotateClockwiseButton.position = CGPoint(x: 100, y: -100)
+        rotateClockwiseButton.position = CGPoint(x: 50, y: -50)
         rotateClockwiseButton.name = "rotateClockwiseButton"
         return rotateClockwiseButton
     }()
@@ -43,23 +36,22 @@ class GameScene: SKScene {
     let rotateCounterClockwiseButton: SKLabelNode = {
         let rotateCounterClockwiseButton = SKLabelNode(text: "Rotate CounterClockwise")
         rotateCounterClockwiseButton.fontName = "AvenirNext-Bold"
-        rotateCounterClockwiseButton.fontSize = 12
+        rotateCounterClockwiseButton.fontSize = 7
         rotateCounterClockwiseButton.fontColor = SKColor.blue
-        rotateCounterClockwiseButton.position = CGPoint(x: -100, y: -100)
+        rotateCounterClockwiseButton.position = CGPoint(x: -50, y: -50)
         rotateCounterClockwiseButton.name = "rotateCounterClockwiseButton"
         return rotateCounterClockwiseButton
     }()
     
     override func didMove(to view: SKView) {
-        
-        addChild(heroSprite)
         size = view.frame.size
         scaleMode = .aspectFill
         
         let cameraScreenPosition = convertWorldToScreen(Vector(x: 2, y: 2))
         cameraNode.position = CGPoint(x: cameraScreenPosition.x, y: cameraScreenPosition.y)
+        cameraNode.setScale(0.5)
         addChild(cameraNode)
-        self.camera = cameraNode
+        camera = cameraNode
         
         addChild(rootNode)
 
@@ -78,10 +70,6 @@ class GameScene: SKScene {
         if touchedNode.name == "rotateClockwiseButton" {
             rotateCW()
         }
-        
-        
-        heroSprite.position = touchedNode.position
-        heroSprite.zPosition = Double(touchedNode.position.y)
     }
     
     func redraw() {
@@ -108,15 +96,41 @@ class GameScene: SKScene {
                 }
             }
         }
+        
+        let knight = SKSpriteNode(imageNamed: "Knight_225_0")
+        let knightPosition = Vector(x: 1, y: 1, z: 1)
+        let knightScreenPosition = convertWorldToScreen(knightPosition, direction: rotation)
+        knight.anchorPoint = CGPoint(x: 0.5, y: 0.3)
+        knight.position = CGPoint(x: knightScreenPosition.x, y: knightScreenPosition.y)
+        knight.zPosition = CGFloat(convertWorldToZPosition(knightPosition, direction: rotation))
+        knight.run(getKnightAnimation(lookRotation: knightRotation))
+        rootNode.addChild(knight)
     }
     
-    @objc func rotateCW() {
+    func rotateCW() {
         rotation = rotation.rotated90DegreesClockwise
         redraw()
     }
     
-    @objc func rotateCCW() {
+    func rotateCCW() {
         rotation = rotation.rotated90DegreesCounterClockwise
         redraw()
+    }
+    
+    func getKnightAnimation(lookRotation: Rotation) -> SKAction {
+        let viewRotation = lookRotation.withReferenceRotation(rotation)
+        let frames = [
+            "Knight_\(viewRotation.rawValue)_0",
+            "Knight_\(viewRotation.rawValue)_1",
+            "Knight_\(viewRotation.rawValue)_2",
+            "Knight_\(viewRotation.rawValue)_3"
+        ]
+            .map { SKTexture(imageNamed: $0) }
+            .map { frame in
+                frame.filteringMode = .nearest
+                return frame
+            }
+        let animation = SKAction.animate(with: frames, timePerFrame: 0.25)
+        return SKAction.repeatForever(animation)
     }
 }
