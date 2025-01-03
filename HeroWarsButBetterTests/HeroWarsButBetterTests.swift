@@ -10,57 +10,51 @@ import XCTest
 
 final class HeroWarsButBetterTests: XCTestCase {
     func test_increasingXbyOne_OffsetsXandYInScreenSpace_by_16and8() {
-        let coordinateInWorldSpace = Vector(x: 1, y: 0)
-        let expectedCoordinateInScreenSpace = Vector(x: 16, y: 8)
+        let coordinateInWorldSpace = Vector3D(x: 1, y: 0)
+        let expectedCoordinateInScreenSpace = Vector2D(x: 16, y: 8)
         XCTAssertEqual(convertWorldToScreen(coordinateInWorldSpace), expectedCoordinateInScreenSpace)
     }
     func test_increasingXbyOne_OffsetsXandYInScreenSpace_by_minus16and8() {
-        let coordinateInWorldSpace = Vector(x: 0, y: 1)
-        let expectedCoordinateInScreenSpace = Vector(x: -16, y: 8)
+        let coordinateInWorldSpace = Vector3D(x: 0, y: 1)
+        let expectedCoordinateInScreenSpace = Vector2D(x: -16, y: 8)
         XCTAssertEqual(convertWorldToScreen(coordinateInWorldSpace), expectedCoordinateInScreenSpace)
     }
     
     func test_linearBehaviourOf_convertWorldToScreen() {
         let worldCoordinates = [
-            Vector(x: -1, y: 2),
-            Vector(x: 2, y: 2),
-            Vector(x: 2, y: -1),
-            Vector(x: -1, y: 0),
-            Vector(x: 0, y: -1),
-            Vector(x: -1, y: -1),
+            Vector3D(x: -1, y: 2),
+            Vector3D(x: 2, y: 2),
+            Vector3D(x: 2, y: -1),
+            Vector3D(x: -1, y: 0),
+            Vector3D(x: 0, y: -1),
+            Vector3D(x: -1, y: -1),
         ]
         let expectedCoordinates = [
-            Vector(x: -48, y: 8),
-            Vector(x: 0, y: 32),
-            Vector(x: 48, y: 8),
-            Vector(x: -16, y: -8),
-            Vector(x: 16, y: -8),
-            Vector(x: 0, y: -16),
+            Vector2D(x: -48, y: 8),
+            Vector2D(x: 0, y: 32),
+            Vector2D(x: 48, y: 8),
+            Vector2D(x: -16, y: -8),
+            Vector2D(x: 16, y: -8),
+            Vector2D(x: 0, y: -16),
         ]
         for i in 0 ..< worldCoordinates.count {
             XCTAssertEqual(convertWorldToScreen(worldCoordinates[i]), expectedCoordinates[i])
         }
     }
     
-    func test_convertWorldToScreen_increasingZByOne_increasesScreenSpaceYby8() {
-        let coordinateInWorldSpace = Vector(x: 1, y: 0, z: 1)
-        let expectedCoordinateInScreenSpace = Vector(x: 16, y: 16, z: 0)
-        XCTAssertEqual(convertWorldToScreen(coordinateInWorldSpace), expectedCoordinateInScreenSpace)
-    }
-    
     func test_convertWorldToScreen_linearity_for3rdDimension() {
         let worldSpaceCoordinates = [
-            Vector(x: 1, y: 0, z: 1),
-            Vector(x: 1, y: 1, z: 2),
-            Vector(x: -1, y: 0, z: 1),
-            Vector(x: -1, y: 2, z: 2)
+            Vector3D(x: 1, y: 0, z: 1),
+            Vector3D(x: 1, y: 1, z: 2),
+            Vector3D(x: -1, y: 0, z: 1),
+            Vector3D(x: -1, y: 2, z: 2)
         ]
         
         let expectedInScreenSpaceCoordinates = [
-            Vector(x: 16, y: 16),
-            Vector(x: 0, y: 32),
-            Vector(x: -16, y: 0),
-            Vector(x: -48, y: 24)
+            Vector2D(x: 16, y: 16),
+            Vector2D(x: 0, y: 32),
+            Vector2D(x: -16, y: 0),
+            Vector2D(x: -48, y: 24)
         ]
         for i in 0 ..< worldSpaceCoordinates.count {
             XCTAssertEqual(convertWorldToScreen(worldSpaceCoordinates[i]), expectedInScreenSpaceCoordinates[i])
@@ -68,10 +62,10 @@ final class HeroWarsButBetterTests: XCTestCase {
     }
     
     func test_convertWorldToZPosition_for2DCoordinates() {
-        let testcases: [(coord: Vector, before: [Vector], behind: [Vector])] = [
-            (Vector(x: -1, y: -1), [Vector(x: -1, y: 0), Vector(x: 0, y: -1)], []),
-            (Vector(x: 0, y: 0), [Vector(x: 0, y: 1), Vector(x: 1, y: 0)], [Vector(x: -1, y: 0), Vector(x: 0, y: -1)]),
-            (Vector(x: 1, y: 0), [Vector(x: 1, y: 1), Vector(x: 2, y: 0)], [Vector(x: 0, y: 0), Vector(x: 1, y: -1)])
+        let testcases: [(coord: Vector3D, before: [Vector3D], behind: [Vector3D])] = [
+            (Vector3D(x: -1, y: -1), [Vector3D(x: -1, y: 0), Vector3D(x: 0, y: -1)], []),
+            (Vector3D(x: 0, y: 0), [Vector3D(x: 0, y: 1), Vector3D(x: 1, y: 0)], [Vector3D(x: -1, y: 0), Vector3D(x: 0, y: -1)]),
+            (Vector3D(x: 1, y: 0), [Vector3D(x: 1, y: 1), Vector3D(x: 2, y: 0)], [Vector3D(x: 0, y: 0), Vector3D(x: 1, y: -1)])
         ]
         
         for testcase in testcases {
@@ -85,10 +79,10 @@ final class HeroWarsButBetterTests: XCTestCase {
     }
     
     func test_convertWorldToZPosition_for3DCoordinates() {
-        let testcases: [(coord: Vector, before: [Vector], behind: [Vector])] = [
-            (Vector(x: -1, y: 0, z: 1), [Vector(x: 0, y: 0, z: 0), Vector(x: 0, y: 1, z: 0)], []),
-            (Vector(x: 1, y: 1, z: 1), [Vector(x: 1, y: 1, z: 0), Vector(x: 1, y: 2, z: 0)], [Vector(x: 1, y: 1, z: 2), Vector(x: 1, y: 0, z: 1)]),
-            (Vector(x: -1, y: 2, z: 1), [Vector(x: -1, y: 2, z: 0), Vector(x: 0, y: 2, z: 0)], [Vector(x: -1, y: 2, z: 2)])
+        let testcases: [(coord: Vector3D, before: [Vector3D], behind: [Vector3D])] = [
+            (Vector3D(x: -1, y: 0, z: 1), [Vector3D(x: 0, y: 0, z: 0), Vector3D(x: 0, y: 1, z: 0)], []),
+            (Vector3D(x: 1, y: 1, z: 1), [Vector3D(x: 1, y: 1, z: 0), Vector3D(x: 1, y: 2, z: 0)], [Vector3D(x: 1, y: 1, z: 2), Vector3D(x: 1, y: 0, z: 1)]),
+            (Vector3D(x: -1, y: 2, z: 1), [Vector3D(x: -1, y: 2, z: 0), Vector3D(x: 0, y: 2, z: 0)], [Vector3D(x: -1, y: 2, z: 2)])
         ]
         
         for testcase in testcases {
@@ -103,9 +97,9 @@ final class HeroWarsButBetterTests: XCTestCase {
     
     func test_rotateCoordinate_returnsInputCoordinate_forDefaultRotation() {
         let inputCoordinates = [
-            Vector(x: -1, y: 1, z: 0),
-            Vector(x: -3, y: 1, z: -2),
-            Vector(x: 3, y: 3, z: 2),
+            Vector3D(x: -1, y: 1, z: 0),
+            Vector3D(x: -3, y: 1, z: -2),
+            Vector3D(x: 3, y: 3, z: 2),
         ]
         
         for coord in inputCoordinates {
@@ -115,17 +109,17 @@ final class HeroWarsButBetterTests: XCTestCase {
     
     func test_rotateCoordinate_returnsInputCoordinate_forClockWiseRotation() {
         let inputCoordinates = [
-            Vector(x: 2, y: -5, z: 0),
-            Vector(x: 3, y: 1, z: 0),
-            Vector(x: -7, y: 3, z: 0),
-            Vector(x: -2, y: -4, z: 0),
+            Vector3D(x: 2, y: -5, z: 0),
+            Vector3D(x: 3, y: 1, z: 0),
+            Vector3D(x: -7, y: 3, z: 0),
+            Vector3D(x: -2, y: -4, z: 0),
         ]
         
         let expectedCoordinates = [
-            Vector(x: 5, y: 2, z: 0),
-            Vector(x: -1, y: 3, z: 0),
-            Vector(x: -3, y: -7, z: 0),
-            Vector(x: 4, y: -2, z: 0),
+            Vector3D(x: 5, y: 2, z: 0),
+            Vector3D(x: -1, y: 3, z: 0),
+            Vector3D(x: -3, y: -7, z: 0),
+            Vector3D(x: 4, y: -2, z: 0),
         ]
         
         for i in 0 ..< inputCoordinates.count {
@@ -135,10 +129,10 @@ final class HeroWarsButBetterTests: XCTestCase {
     
     func test_rotateCoordinate_doesNotChangeZProperty() {
         let inputCoordinates = [
-            Vector(x: 2, y: -5, z: 5),
-            Vector(x: 3, y: 1, z: -2),
-            Vector(x: -7, y: 3, z: 4),
-            Vector(x: -2, y: -4, z: -8),
+            Vector3D(x: 2, y: -5, z: 5),
+            Vector3D(x: 3, y: 1, z: -2),
+            Vector3D(x: -7, y: 3, z: 4),
+            Vector3D(x: -2, y: -4, z: -8),
         ]
         
         for coord in inputCoordinates {
@@ -151,7 +145,7 @@ final class HeroWarsButBetterTests: XCTestCase {
         
         for _ in 0 ..< 20 {
             for rotation in rotations {
-                let coord = Vector.random
+                let coord = Vector3D.random
                 let convertedCoordinate = convertWorldToScreen(coord, direction: rotation)
                 let rotatedCoordinate = rotateCoordinate(coord, direction: rotation)
                 let expectedCoordinate = convertWorldToScreen(rotatedCoordinate)
@@ -165,7 +159,7 @@ final class HeroWarsButBetterTests: XCTestCase {
         
         for _ in 0 ..< 20 {
             for rotation in rotations {
-                let coord = Vector.random
+                let coord = Vector3D.random
                 let convertedCoordinate = convertWorldToZPosition(coord, direction: rotation)
                 let rotatedCoordinate = rotateCoordinate(coord, direction: rotation)
                 let expectedCoordinate = convertWorldToZPosition(rotatedCoordinate)

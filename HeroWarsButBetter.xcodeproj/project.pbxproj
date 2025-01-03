@@ -17,6 +17,10 @@
 		36374B532D27251000EC82AD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B4D2D27251000EC82AD /* GameScene.swift */; };
 		36374B562D27251000EC82AD /* IsoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B512D27251000EC82AD /* IsoConverter.swift */; };
 		36374B582D272AF900EC82AD /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B572D272AF900EC82AD /* Entity.swift */; };
+		36374B5A2D288C4C00EC82AD /* Vector3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B592D288C4C00EC82AD /* Vector3D.swift */; };
+		36374B5C2D288C7200EC82AD /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B5B2D288C7200EC82AD /* Map.swift */; };
+		36374B5E2D288C8300EC82AD /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B5D2D288C8300EC82AD /* MapTests.swift */; };
+		36374B612D288FE200EC82AD /* Vector2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B5F2D288FE000EC82AD /* Vector2D.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		36374B4D2D27251000EC82AD /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		36374B512D27251000EC82AD /* IsoConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsoConverter.swift; sourceTree = "<group>"; };
 		36374B572D272AF900EC82AD /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		36374B592D288C4C00EC82AD /* Vector3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3D.swift; sourceTree = "<group>"; };
+		36374B5B2D288C7200EC82AD /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		36374B5D2D288C8300EC82AD /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
+		36374B5F2D288FE000EC82AD /* Vector2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2D.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,8 @@
 		36374B222D2724D000EC82AD /* HeroWarsButBetter */ = {
 			isa = PBXGroup;
 			children = (
+				36374B5F2D288FE000EC82AD /* Vector2D.swift */,
+				36374B592D288C4C00EC82AD /* Vector3D.swift */,
 				36374B502D27251000EC82AD /* Scenes */,
 				36374B232D2724D000EC82AD /* HeroWarsButBetterApp.swift */,
 				36374B512D27251000EC82AD /* IsoConverter.swift */,
@@ -107,6 +117,7 @@
 				36374B272D2724D100EC82AD /* Assets.xcassets */,
 				36374B292D2724D100EC82AD /* Preview Content */,
 				36374B572D272AF900EC82AD /* Entity.swift */,
+				36374B5B2D288C7200EC82AD /* Map.swift */,
 			);
 			path = HeroWarsButBetter;
 			sourceTree = "<group>";
@@ -123,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				36374B342D2724D100EC82AD /* HeroWarsButBetterTests.swift */,
+				36374B5D2D288C8300EC82AD /* MapTests.swift */,
 			);
 			path = HeroWarsButBetterTests;
 			sourceTree = "<group>";
@@ -276,7 +288,10 @@
 			files = (
 				36374B532D27251000EC82AD /* GameScene.swift in Sources */,
 				36374B262D2724D000EC82AD /* ContentView.swift in Sources */,
+				36374B612D288FE200EC82AD /* Vector2D.swift in Sources */,
 				36374B582D272AF900EC82AD /* Entity.swift in Sources */,
+				36374B5C2D288C7200EC82AD /* Map.swift in Sources */,
+				36374B5A2D288C4C00EC82AD /* Vector3D.swift in Sources */,
 				36374B562D27251000EC82AD /* IsoConverter.swift in Sources */,
 				36374B242D2724D000EC82AD /* HeroWarsButBetterApp.swift in Sources */,
 			);
@@ -286,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36374B5E2D288C8300EC82AD /* MapTests.swift in Sources */,
 				36374B352D2724D100EC82AD /* HeroWarsButBetterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
