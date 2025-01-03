@@ -15,9 +15,8 @@
 		36374B3F2D2724D100EC82AD /* HeroWarsButBetterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B3E2D2724D100EC82AD /* HeroWarsButBetterUITests.swift */; };
 		36374B412D2724D100EC82AD /* HeroWarsButBetterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B402D2724D100EC82AD /* HeroWarsButBetterUITestsLaunchTests.swift */; };
 		36374B532D27251000EC82AD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B4D2D27251000EC82AD /* GameScene.swift */; };
-		36374B542D27251000EC82AD /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B4E2D27251000EC82AD /* MainMenuScene.swift */; };
-		36374B552D27251000EC82AD /* SettingsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B4F2D27251000EC82AD /* SettingsScene.swift */; };
-		36374B562D27251000EC82AD /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B512D27251000EC82AD /* Vector.swift */; };
+		36374B562D27251000EC82AD /* IsoConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B512D27251000EC82AD /* IsoConverter.swift */; };
+		36374B582D272AF900EC82AD /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B572D272AF900EC82AD /* Entity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +48,8 @@
 		36374B3E2D2724D100EC82AD /* HeroWarsButBetterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroWarsButBetterUITests.swift; sourceTree = "<group>"; };
 		36374B402D2724D100EC82AD /* HeroWarsButBetterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroWarsButBetterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		36374B4D2D27251000EC82AD /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		36374B4E2D27251000EC82AD /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
-		36374B4F2D27251000EC82AD /* SettingsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
-		36374B512D27251000EC82AD /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		36374B512D27251000EC82AD /* IsoConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsoConverter.swift; sourceTree = "<group>"; };
+		36374B572D272AF900EC82AD /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +101,12 @@
 			isa = PBXGroup;
 			children = (
 				36374B502D27251000EC82AD /* Scenes */,
-				36374B522D27251000EC82AD /* Vector */,
 				36374B232D2724D000EC82AD /* HeroWarsButBetterApp.swift */,
+				36374B512D27251000EC82AD /* IsoConverter.swift */,
 				36374B252D2724D000EC82AD /* ContentView.swift */,
 				36374B272D2724D100EC82AD /* Assets.xcassets */,
 				36374B292D2724D100EC82AD /* Preview Content */,
+				36374B572D272AF900EC82AD /* Entity.swift */,
 			);
 			path = HeroWarsButBetter;
 			sourceTree = "<group>";
@@ -141,18 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				36374B4D2D27251000EC82AD /* GameScene.swift */,
-				36374B4E2D27251000EC82AD /* MainMenuScene.swift */,
-				36374B4F2D27251000EC82AD /* SettingsScene.swift */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		36374B522D27251000EC82AD /* Vector */ = {
-			isa = PBXGroup;
-			children = (
-				36374B512D27251000EC82AD /* Vector.swift */,
-			);
-			path = Vector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,9 +276,8 @@
 			files = (
 				36374B532D27251000EC82AD /* GameScene.swift in Sources */,
 				36374B262D2724D000EC82AD /* ContentView.swift in Sources */,
-				36374B542D27251000EC82AD /* MainMenuScene.swift in Sources */,
-				36374B552D27251000EC82AD /* SettingsScene.swift in Sources */,
-				36374B562D27251000EC82AD /* Vector.swift in Sources */,
+				36374B582D272AF900EC82AD /* Entity.swift in Sources */,
+				36374B562D27251000EC82AD /* IsoConverter.swift in Sources */,
 				36374B242D2724D000EC82AD /* HeroWarsButBetterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
