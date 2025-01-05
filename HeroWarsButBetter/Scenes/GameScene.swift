@@ -19,8 +19,12 @@ class GameScene: SKScene {
     ])
     
     var rotation = Rotation.defaultRotation
-    let rootNode = SKNode()
     let cameraNode = SKCameraNode()
+    let rootNode = SKNode()
+    
+    //temp
+    var dijkstra = [Vector2D: Int]()
+    var selectedCoord: Vector2D?
     
     let entities = [
         Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1)),
@@ -36,25 +40,11 @@ class GameScene: SKScene {
         cameraNode.position = CGPoint(x: cameraScreenPosition.x, y: cameraScreenPosition.y)
         cameraNode.setScale(0.5)
         addChild(cameraNode)
-        camera = cameraNode
+        self.camera = cameraNode
         
         addChild(rootNode)
 
         redraw()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        let location = touch.location(in: self)
-        let touchedNode = atPoint(location)
-
-        if touchedNode.name == "rotateCounterClockwiseButton" {
-            rotateCCW()
-        }
-        
-        if touchedNode.name == "rotateClockwiseButton" {
-            rotateCW()
-        }
     }
     
     func redraw() {
@@ -63,6 +53,12 @@ class GameScene: SKScene {
         
         for node in rootNode.children {
             node.removeFromParent()
+        }
+        
+        if let selectedCoord {
+            dijkstra = map.dijkstra(target: selectedCoord)
+        } else {
+            dijkstra.removeAll()
         }
         
         for y in 0 ..< map.rowCount {
@@ -75,6 +71,17 @@ class GameScene: SKScene {
                     let screenPosition = convertWorldToScreen(position, direction: rotation)
                     sprite.position = CGPoint(x: screenPosition.x, y: screenPosition.y)
                     sprite.zPosition = CGFloat(convertWorldToZPosition(position, direction: rotation))
+                    
+                    var color = SKColor.white
+                    if let distance = dijkstra[position.xy] {
+                        let hue = Double(distance) / 10.0
+                        color = SKColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
+                    }
+                    sprite.colorBlendFactor = 1
+                    sprite.color = color
+                    
+                    sprite.userData = ["coord" : position]
+                    
                     rootNode.addChild(sprite)
                 }
             }
@@ -88,6 +95,11 @@ class GameScene: SKScene {
             sprite.zPosition = CGFloat(convertWorldToZPosition(entity.position, direction: rotation))
             sprite.run(getIdleAnimationForEntity(entity))
             rootNode.addChild(sprite)
+        }
+        
+        print("Root node children count: \(rootNode.children.count)")
+        for node in rootNode.children {
+            print("Node position: \(node.position), userData: \(node.userData ?? [:])")
         }
     }
     
@@ -134,5 +146,18 @@ class GameScene: SKScene {
             }
         let animation = SKAction.animate(with: frames, timePerFrame: 0.25)
         return SKAction.repeatForever(animation)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        let node = atPoint(location)
+        
+        guard let coord = node.userData?["coord"] as? Vector3D else {
+            return
+        }
+        
+        selectedCoord = coord.xy
+        redraw()
     }
 }
