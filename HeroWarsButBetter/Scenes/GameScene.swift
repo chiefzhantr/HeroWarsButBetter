@@ -23,6 +23,7 @@ class GameScene: SKScene {
     let rootNode = SKNode()
     
     //temp
+    var path = [Vector2D]()
     var dijkstra = [Vector2D: Int]()
     var selectedCoord: Vector2D?
     
@@ -56,15 +57,16 @@ class GameScene: SKScene {
         }
         
         if let selectedCoord {
-            dijkstra = map.dijkstra(target: selectedCoord)
+            dijkstra = map.dijkstra(target: Vector2D(x: 1, y: 1))
+            path = map.getPath(to: selectedCoord, using: dijkstra)
         } else {
-            dijkstra.removeAll()
+            path.removeAll()
         }
         
         for y in 0 ..< map.rowCount {
             for x in 0 ..< map.colCount {
                 let elevation = map[Vector2D(x: x, y: y)]
-                for z in 0 ..< elevation {
+                for z in 0 ... elevation {
                     let sprite = SKSpriteNode(imageNamed: "block")
                     sprite.texture?.filteringMode = .nearest
                     let position = Vector3D(x: x, y: y, z: z)
@@ -73,15 +75,15 @@ class GameScene: SKScene {
                     sprite.zPosition = CGFloat(convertWorldToZPosition(position, direction: rotation))
                     
                     var color = SKColor.white
-                    if let distance = dijkstra[position.xy] {
-                        let hue = Double(distance) / 10.0
-                        color = SKColor(hue: hue, saturation: 1, brightness: 1, alpha: 1)
+                    if path.contains(position.xy) && z == elevation {
+                        color = SKColor.blue
                     }
+                    
                     sprite.colorBlendFactor = 1
                     sprite.color = color
                     
                     sprite.userData = ["coord" : position]
-                    
+                     
                     rootNode.addChild(sprite)
                 }
             }
@@ -90,7 +92,7 @@ class GameScene: SKScene {
         for entity in entities {
             let sprite = SKSpriteNode(imageNamed: getIdleAnimationFirstFrameNameForEntity(entity, referenceRotation: rotation))
             let entityScreenPosition = convertWorldToScreen(entity.position, direction: rotation)
-            sprite.anchorPoint = CGPoint(x: 0.5, y: 0.35)
+            sprite.anchorPoint = CGPoint(x: 0.5, y: 0.3)
             sprite.position = CGPoint(x: entityScreenPosition.x, y: entityScreenPosition.y)
             sprite.zPosition = CGFloat(convertWorldToZPosition(entity.position, direction: rotation))
             sprite.run(getIdleAnimationForEntity(entity))
@@ -150,14 +152,29 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        let location = touch.location(in: self)
-        let node = atPoint(location)
-        
-        guard let coord = node.userData?["coord"] as? Vector3D else {
-            return
+        let scenePoint = touch.location(in: self)
+        let nodeCoords = nodes(at: scenePoint)
+            .sorted {($0.position - scenePoint).sqrMagnitude < ($1.position - scenePoint).sqrMagnitude}
+            .compactMap { node -> Vector3D? in
+                guard let coord = node.userData?["coord"] as? Vector3D else {
+                    return nil
+                }
+                return coord
+            }
+            .filter {$0 == map.convertTo3D($0.xy)}
+        if let clickedTile = nodeCoords.first {
+            selectedCoord = clickedTile.xy
         }
-        
-        selectedCoord = coord.xy
         redraw()
+    }
+}
+
+extension CGPoint {
+    static func  -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+    
+    var sqrMagnitude: Double {
+        x * x + y * y
     }
 }
