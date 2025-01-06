@@ -95,7 +95,7 @@ class GameScene: SKScene {
             sprite.anchorPoint = CGPoint(x: 0.5, y: 0.3)
             sprite.position = CGPoint(x: entityScreenPosition.x, y: entityScreenPosition.y)
             sprite.zPosition = CGFloat(convertWorldToZPosition(entity.position, direction: rotation))
-            sprite.run(getIdleAnimationForEntity(entity))
+            sprite.run(getAnimationForEntity(entity, animation: "Walk"))
             rootNode.addChild(sprite)
         }
         
@@ -133,9 +133,9 @@ class GameScene: SKScene {
         redraw()
     }
     
-    func getIdleAnimationForEntity(_ entity: Entity) -> SKAction {
-        let animationName = getIdleAnimationNameForEntity(entity, referenceRotation: rotation)
-        let frames = [ 
+    func getAnimationForEntity(_ entity: Entity, animation: String) -> SKAction {
+        let animationName = getAnimationNameForEntity(entity, animation: animation, referenceRotation: rotation)
+        let frames = [
             "\(animationName)_0",
             "\(animationName)_1",
             "\(animationName)_2",
