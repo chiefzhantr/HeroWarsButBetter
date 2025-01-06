@@ -12,8 +12,13 @@ final class Entity {
     var position: Vector3D
     var rotation = Rotation.defaultRotation
     
-    init(sprite: String, startPosition: Vector3D) {
+    init(sprite: String, startPosition: Vector3D, rotation: Rotation = .defaultRotation) {
         self.position = startPosition
         self.sprite = sprite
+        self.rotation = rotation
+    }
+    
+    func copy() -> Entity {
+        Entity(sprite: sprite, startPosition: position, rotation: rotation)
     }
 }

@@ -21,6 +21,9 @@
 		36374B5C2D288C7200EC82AD /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B5B2D288C7200EC82AD /* Map.swift */; };
 		36374B5E2D288C8300EC82AD /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B5D2D288C8300EC82AD /* MapTests.swift */; };
 		36374B612D288FE200EC82AD /* Vector2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36374B5F2D288FE000EC82AD /* Vector2D.swift */; };
+		36CAC35F2D2C19330070D63A /* RotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAC35E2D2C19330070D63A /* RotationTests.swift */; };
+		36CAC3612D2C1D3D0070D63A /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAC3602D2C1D3D0070D63A /* Rotation.swift */; };
+		36CAC3632D2C22110070D63A /* EntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAC3622D2C22110070D63A /* EntityTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		36374B5B2D288C7200EC82AD /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		36374B5D2D288C8300EC82AD /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
 		36374B5F2D288FE000EC82AD /* Vector2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2D.swift; sourceTree = "<group>"; };
+		36CAC35E2D2C19330070D63A /* RotationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTests.swift; sourceTree = "<group>"; };
+		36CAC3602D2C1D3D0070D63A /* Rotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
+		36CAC3622D2C22110070D63A /* EntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,7 @@
 				36374B292D2724D100EC82AD /* Preview Content */,
 				36374B572D272AF900EC82AD /* Entity.swift */,
 				36374B5B2D288C7200EC82AD /* Map.swift */,
+				36CAC3602D2C1D3D0070D63A /* Rotation.swift */,
 			);
 			path = HeroWarsButBetter;
 			sourceTree = "<group>";
@@ -135,6 +142,8 @@
 			children = (
 				36374B342D2724D100EC82AD /* HeroWarsButBetterTests.swift */,
 				36374B5D2D288C8300EC82AD /* MapTests.swift */,
+				36CAC35E2D2C19330070D63A /* RotationTests.swift */,
+				36CAC3622D2C22110070D63A /* EntityTests.swift */,
 			);
 			path = HeroWarsButBetterTests;
 			sourceTree = "<group>";
@@ -291,6 +300,7 @@
 				36374B612D288FE200EC82AD /* Vector2D.swift in Sources */,
 				36374B582D272AF900EC82AD /* Entity.swift in Sources */,
 				36374B5C2D288C7200EC82AD /* Map.swift in Sources */,
+				36CAC3612D2C1D3D0070D63A /* Rotation.swift in Sources */,
 				36374B5A2D288C4C00EC82AD /* Vector3D.swift in Sources */,
 				36374B562D27251000EC82AD /* IsoConverter.swift in Sources */,
 				36374B242D2724D000EC82AD /* HeroWarsButBetterApp.swift in Sources */,
@@ -301,8 +311,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36CAC3632D2C22110070D63A /* EntityTests.swift in Sources */,
 				36374B5E2D288C8300EC82AD /* MapTests.swift in Sources */,
 				36374B352D2724D100EC82AD /* HeroWarsButBetterTests.swift in Sources */,
+				36CAC35F2D2C19330070D63A /* RotationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
