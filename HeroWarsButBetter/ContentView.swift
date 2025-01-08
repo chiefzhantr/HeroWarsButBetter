@@ -9,8 +9,7 @@ import SwiftUI
 import SpriteKit
 
 struct ContentView: View {
-    let scene = GameScene()
-    let viewModel = ViewModel(map: Map(heightMap: [
+    @StateObject var viewModel = ViewModel(map: Map(heightMap: [
             [1, 1, 1, 1, 1],
             [1, 1, 2, 1, 1],
             [1, 1, 1, 1, 1],
@@ -22,11 +21,23 @@ struct ContentView: View {
         Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1)),
     ])
     
+    let scene = GameScene()
+    
     var body: some View { 
         ZStack {
             SpriteView(scene: scene)
             VStack {
                 Spacer()
+                if let selectedTile = viewModel.selectedTile {
+                    Text("Selected tile: \(selectedTile)")
+                        .foregroundStyle(.white)
+                }
+                
+                if let selectedEntity = viewModel.selectedEntity {
+                    Text("Selected entity: \(selectedEntity.sprite)")
+                        .foregroundStyle(.white)
+                }
+                
                 HStack {
                     Button("Rotate CCW") {
                         scene.rotateCCW()
@@ -45,6 +56,6 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}

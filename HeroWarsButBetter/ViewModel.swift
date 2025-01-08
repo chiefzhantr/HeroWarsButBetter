@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Combine
 
-final class ViewModel {
-    var selectedTile: Vector3D?
-    var selectedEntity: Entity?
+final class ViewModel: ObservableObject {
+    @Published var selectedTile: Vector3D?
+    @Published var selectedEntity: Entity?
     let map: Map
     let entities: [Entity]
     
