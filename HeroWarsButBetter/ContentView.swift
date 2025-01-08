@@ -10,23 +10,23 @@ import SpriteKit
 
 struct ContentView: View {
     let scene = GameScene()
+    let viewModel = ViewModel(map: Map(heightMap: [
+            [1, 1, 1, 1, 1],
+            [1, 1, 2, 1, 1],
+            [1, 1, 1, 1, 1],
+            [1, 1, 1, 2, 1],
+            [2, 1, 1, 2, 1],
+    ]), entities: [
+        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1)),
+        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 2, z: 1)),
+        Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1)),
+    ])
     
-    var body: some View {
+    var body: some View { 
         ZStack {
             SpriteView(scene: scene)
             VStack {
                 Spacer()
-                Button("Random!") {
-                    scene.moveRandomEntityToRandomPosition()
-                } 
-                HStack {
-                    Button("Rotate Knight CCW") {
-                        scene.rotateKnightCCW()
-                    }
-                    Button("Rotate Knight CW") {
-                        scene.rotateKnightCW()
-                    }
-                }
                 HStack {
                     Button("Rotate CCW") {
                         scene.rotateCCW()
@@ -39,6 +39,9 @@ struct ContentView: View {
             .padding()
         }
         .ignoresSafeArea()
+        .onAppear(perform: {
+            scene.viewModel = viewModel
+        })
     }
 }
 
