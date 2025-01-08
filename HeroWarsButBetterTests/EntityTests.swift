@@ -25,4 +25,29 @@ final class EntityTests: XCTestCase {
         XCTAssertEqual(copy.position, entity.position)
         XCTAssertEqual(copy.rotation, entity.rotation)
     }
+     
+    func test_completeCurrentAction_setsCurrentActionToNil() {
+        let entity = Entity(sprite: "Entity", startPosition: .zero)
+        entity.currentAction = DummyAction()
+        entity.completeCurrentAction()
+        
+        XCTAssertNil(entity.currentAction)
+    }
+    
+    func test_completeCurrentAction_callsActionComplete() {
+        struct BlockAction: Action {
+            let block: () -> Void
+            func complete() {
+                block()
+            }
+        }
+        
+        let entity = Entity(sprite: "Entity", startPosition: .zero)
+        var count = 0
+        entity.currentAction = BlockAction {
+            count += 1
+        }
+        entity.completeCurrentAction()
+        XCTAssertEqual(count, 1)
+    }
 }

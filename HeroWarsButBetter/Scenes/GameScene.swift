@@ -22,11 +22,6 @@ class GameScene: SKScene {
     let cameraNode = SKCameraNode()
     let rootNode = SKNode()
     
-    //temp
-    var path = [Vector2D]()
-    var dijkstra = [Vector2D: Int]()
-    var selectedCoord: Vector2D?
-    
     let entities = [
         Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1)),
         Entity(sprite: "Knight", startPosition: Vector3D(x: 3, y: 3, z: 1)),
@@ -56,13 +51,6 @@ class GameScene: SKScene {
             node.removeFromParent()
         }
         
-        if let selectedCoord {
-            dijkstra = map.dijkstra(target: Vector2D(x: 1, y: 1))
-            path = map.getPath(to: selectedCoord, using: dijkstra)
-        } else {
-            path.removeAll()
-        }
-        
         for y in 0 ..< map.rowCount {
             for x in 0 ..< map.colCount {
                 let elevation = map[Vector2D(x: x, y: y)]
@@ -75,7 +63,7 @@ class GameScene: SKScene {
                     sprite.zPosition = CGFloat(convertWorldToZPosition(position, direction: rotation))
                     
                     var color = SKColor.white
-                    if path.contains(position.xy) && z == elevation {
+                    if (entities[0].currentAction as? MoveAction)?.path.contains(position) ?? false{
                         color = SKColor.blue
                     }
                     
@@ -96,8 +84,8 @@ class GameScene: SKScene {
             sprite.position = CGPoint(x: entityScreenPosition.x, y: entityScreenPosition.y)
             sprite.zPosition = CGFloat(convertWorldToZPosition(entity.position + Vector3D(x: 0, y: 0, z: 2), direction: rotation))
             
-            if path.isEmpty == false && entity === entities[0] {
-                sprite.run(createFollowPathAnimationForEntity(entity))
+            if entity === entities[0], let moveAnimation = createFollowPathAnimationForEntity(entity) {
+                sprite.run(moveAnimation)
             } else {
                 sprite.run(.repeatForever(getAnimationForEntity(entity, animation: "Idle")))
             }
@@ -156,29 +144,39 @@ class GameScene: SKScene {
         return animation
     }
     
-    func createFollowPathAnimationForEntity(_ entity: Entity) -> SKAction {
+    func createFollowPathAnimationForEntity(_ entity: Entity) -> SKAction? {
+        
+        guard let moveAction = entity.currentAction as? MoveAction else {
+            return nil
+        }
+        
         var movementActions = [SKAction]()
         let duration = 0.25
         var lastCoord = entity.position.xy
-        for coord in path {
+        for coord in moveAction.path {
             let stuntDouble = entity.copy()
-            let newRotation = Rotation.fromLookDirection(coord - lastCoord) ?? entity.rotation
+            let newRotation = Rotation.fromLookDirection(coord.xy - lastCoord) ?? entity.rotation
             stuntDouble.rotation = newRotation
-            lastCoord = coord
+            lastCoord = coord.xy
             let animation = getAnimationForEntity(stuntDouble, animation: "Walk")
             
-            let screenCoord = convertWorldToScreen(map.convertTo3D(coord), direction: rotation)
+            let screenCoord = convertWorldToScreen(coord, direction: rotation)
             let screenPosition = CGPoint(x: screenCoord.x, y: screenCoord.y)
             let movementAction = SKAction.move(to: screenPosition, duration: duration)
-            let zPosition = convertWorldToZPosition(map.convertTo3D(coord) + Vector3D(x: 0, y: 0, z: 2), direction: rotation)
+            let zPosition = convertWorldToZPosition(coord + Vector3D(x: 0, y: 0, z: 2), direction: rotation)
             let zPositionAction = SKAction.customAction(withDuration: duration) { node, time in
                 node.zPosition = CGFloat(zPosition)
                 
             }
             
-            movementActions.append(.group([animation, movementAction]))
+            movementActions.append(.group([animation, movementAction, zPositionAction]))
         }
         
+        let completeAction = SKAction.customAction(withDuration: 0.001) { _, _ in
+            entity.completeCurrentAction()
+        }
+        movementActions.append(completeAction)
+         
         return SKAction.sequence(movementActions)
     }
     
@@ -195,7 +193,11 @@ class GameScene: SKScene {
             }
             .filter {$0 == map.convertTo3D($0.xy)}
         if let clickedTile = nodeCoords.first {
-            selectedCoord = clickedTile.xy
+            let dijkstra = map.dijkstra(target: entities[0].position.xy)
+            let path = map.getPath(to: clickedTile.xy, using: dijkstra).map {
+                map.convertTo3D($0)
+            }
+            entities[0].currentAction = MoveAction(owner: entities[0], path: path)
         }
         redraw()
     }
