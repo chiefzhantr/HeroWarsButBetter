@@ -62,7 +62,7 @@ class GameScene: SKScene {
                         color = SKColor.purple
                     } else if path.contains(where: {$0.contains(position)}){
                         color = SKColor.blue
-                    } else if viewModel.currentAction != nil {
+                    } else if let currentAction = viewModel.currentAction, let selectedEntity = viewModel.selectedEntity, type(of: currentAction).reachableTiles(in: map, for: selectedEntity).contains(position) {
                         color = SKColor.systemPink
                     }
                     sprite.colorBlendFactor = 1

@@ -11,6 +11,7 @@ protocol Action {
     var description: String { get }
     var canComplete: Bool { get }
     static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> Self?
+    static func reachableTiles(in map: Map, for entity: Entity) -> [Vector3D]
     
     func complete()
 }
@@ -18,6 +19,10 @@ protocol Action {
 extension Action {
     func complete() {
         print("Completed action: \(self)")
+    }
+    
+    static func reachableTiles(in map: Map, for entity: Entity) -> [Vector3D] {
+        map.tiles.keys.map { map.convertTo3D($0) }
     }
     
     var description: String {
@@ -38,6 +43,10 @@ struct DummyAction: Action {
 
 struct MoveAction: Action {
     static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> MoveAction? {
+        guard reachableTiles(in: map, for: entity).contains(targetting) else {
+            return nil
+        }
+        
         let dijkstra = map.dijkstra(target: entity.position.xy)
         let path = map.getPath(to: targetting.xy, using: dijkstra).map {
             map.convertTo3D($0)
@@ -67,5 +76,15 @@ struct MoveAction: Action {
     
     var canComplete: Bool {
         path.isEmpty == false
+    }
+    
+    static func reachableTiles(in map: Map, for entity: Entity) -> [Vector3D] {
+        let dijkstra = map.dijkstra(target: entity.position.xy)
+        
+        return dijkstra.filter {
+            $0.value <= 3
+        }.map {
+            map.convertTo3D($0.key)
+        }
     }
 }

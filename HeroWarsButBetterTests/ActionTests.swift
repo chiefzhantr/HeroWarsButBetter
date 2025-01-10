@@ -88,4 +88,36 @@ final class ActionTests: XCTestCase {
         let action = MoveAction(path: [])
         XCTAssertEqual(action.canComplete, false)
     }
+    
+    func test_moveAction_reachableTiles_returns_tilesWithinRange_ofEntity() {
+        let entity = Entity(sprite: "Example Entity", startPosition: .init(x: 1, y: 1, z: 1))
+        let expectedReachableTiles = [
+            Vector3D(x: 0, y: 2, z: 1),
+            Vector3D(x: 1, y: 4, z: 1),
+            Vector3D(x: 0, y: 0, z: 1),
+            Vector3D(x: 0, y: 1, z: 1),
+            Vector3D(x: 1, y: 2, z: 1),
+            Vector3D(x: 2, y: 0, z: 1),
+            Vector3D(x: 3, y: 0, z: 1),
+            Vector3D(x: 1, y: 1, z: 1),
+            Vector3D(x: 1, y: 3, z: 1),
+            Vector3D(x: 0, y: 3, z: 1),
+            Vector3D(x: 2, y: 1, z: 3),
+            Vector3D(x: 1, y: 0, z: 1),
+        ]
+        
+        let reachableTiles = MoveAction.reachableTiles(in: exampleMap, for: entity)
+        
+        XCTAssertEqual(reachableTiles.count, expectedReachableTiles.count)
+        
+        for reachableTile in reachableTiles {
+            XCTAssertTrue(expectedReachableTiles.contains(reachableTile))
+        }
+    }
+    
+    func test_moveAction_make_returnsNil_whenCoord_thatIsNotIn_reachableTiles_isPassedIn() {
+        let entity = Entity(sprite: "Example Entity", startPosition: .init(x: 1, y: 1, z: 1))
+        let maybeMoveAction = MoveAction.make(in: exampleMap, for: entity, targetting: Vector3D(x: 4, y: 4, z: 1))
+        XCTAssertNil(maybeMoveAction)
+    }
 }
