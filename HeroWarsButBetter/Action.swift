@@ -8,6 +8,8 @@
 import Foundation
 
 protocol Action {
+    static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> Self?
+    
     func complete()
 }
 
@@ -18,10 +20,21 @@ extension Action {
 }
 
 struct DummyAction: Action {
+    static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> DummyAction? {
+        DummyAction()
+    }
     
 }
 
 struct MoveAction: Action {
+    static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> MoveAction? {
+        let dijkstra = map.dijkstra(target: entity.position.xy)
+        let path = map.getPath(to: targetting.xy, using: dijkstra).map {
+            map.convertTo3D($0)
+        }
+        return MoveAction(owner: entity, path: path)
+    }
+    
     weak var owner: Entity?
     let path: [Vector3D]
     

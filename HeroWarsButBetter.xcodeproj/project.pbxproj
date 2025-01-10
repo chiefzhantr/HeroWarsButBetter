@@ -28,6 +28,7 @@
 		36CAC3672D2DD51D0070D63A /* ActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAC3662D2DD51D0070D63A /* ActionTests.swift */; };
 		36CAC3692D2EA2D90070D63A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAC3682D2EA2D90070D63A /* ViewModel.swift */; };
 		36CAC36B2D2EA30F0070D63A /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CAC36A2D2EA30F0070D63A /* ViewModelTests.swift */; };
+		36E614FE2D3136A000957251 /* EntityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E614FD2D3136A000957251 /* EntityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		36CAC3662D2DD51D0070D63A /* ActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
 		36CAC3682D2EA2D90070D63A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		36CAC36A2D2EA30F0070D63A /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
+		36E614FD2D3136A000957251 /* EntityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				36CAC3602D2C1D3D0070D63A /* Rotation.swift */,
 				36CAC3642D2DD3710070D63A /* Action.swift */,
 				36CAC3682D2EA2D90070D63A /* ViewModel.swift */,
+				36E614FD2D3136A000957251 /* EntityView.swift */,
 			);
 			path = HeroWarsButBetter;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				36CAC3652D2DD3710070D63A /* Action.swift in Sources */,
 				36374B582D272AF900EC82AD /* Entity.swift in Sources */,
 				36374B5C2D288C7200EC82AD /* Map.swift in Sources */,
+				36E614FE2D3136A000957251 /* EntityView.swift in Sources */,
 				36CAC3612D2C1D3D0070D63A /* Rotation.swift in Sources */,
 				36374B5A2D288C4C00EC82AD /* Vector3D.swift in Sources */,
 				36374B562D27251000EC82AD /* IsoConverter.swift in Sources */,
