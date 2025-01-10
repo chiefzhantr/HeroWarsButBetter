@@ -33,8 +33,8 @@ struct ContentView: View {
                         EntityView(viewModel: viewModel)
                     }
                 }
-                if let currentAction = viewModel.currentAction {
-                    Button("Execute \(currentAction)") {
+                if let currentAction = viewModel.currentAction, currentAction.canComplete {
+                    Button("Execute \(currentAction.description)") {
                         print("Execute \(currentAction)")
                         viewModel.commitAction()
                     }

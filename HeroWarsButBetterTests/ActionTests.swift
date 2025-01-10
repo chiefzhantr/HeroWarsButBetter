@@ -62,4 +62,30 @@ final class ActionTests: XCTestCase {
         
         XCTAssertEqual(action.path, expectedPath)
     }
+    
+    func test_moveAction_description() {
+        let path = [
+            Vector3D(x: 2, y: 2, z: 3),
+            Vector3D(x: 2, y: 1, z: 3),
+            Vector3D(x: 2, y: 1, z: 1),
+        ]
+        
+        let action = MoveAction(path: path)
+        XCTAssertEqual(action.description, "Move to (\(path[2].x),\(path[2].y))")
+    }
+    
+    func test_moveAction_description_emptyDescription() {
+        let action = MoveAction(path: [])
+        XCTAssertEqual(action.description, "Move to ...")
+    }
+    
+    func test_moveAction_canComplete_returnsTrue_whenPathIsNotEmpty() {
+        let action = MoveAction(path: [Vector3D(x: 1, y: 2, z: 3)])
+        XCTAssertEqual(action.canComplete, true)
+    }
+    
+    func test_moveAction_canComplete_returnsTrue_whenPathIsEmpty() {
+        let action = MoveAction(path: [])
+        XCTAssertEqual(action.canComplete, false)
+    }
 }
