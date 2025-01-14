@@ -90,7 +90,7 @@ final class ActionTests: XCTestCase {
     }
     
     func test_moveAction_reachableTiles_returns_tilesWithinRange_ofEntity() {
-        let entity = Entity(sprite: "Example Entity", startPosition: .init(x: 1, y: 1, z: 1))
+        let entity = Entity(sprite: "Example Entity", startPosition: .init(x: 1, y: 1, z: 1), range: 3)
         let expectedReachableTiles = [
             Vector3D(x: 0, y: 2, z: 1),
             Vector3D(x: 1, y: 4, z: 1),
@@ -116,7 +116,7 @@ final class ActionTests: XCTestCase {
     }
     
     func test_moveAction_make_returnsNil_whenCoord_thatIsNotIn_reachableTiles_isPassedIn() {
-        let entity = Entity(sprite: "Example Entity", startPosition: .init(x: 1, y: 1, z: 1))
+        let entity = Entity(sprite: "Example Entity", startPosition: .init(x: 1, y: 1, z: 1), range: 3)
         let maybeMoveAction = MoveAction.make(in: exampleMap, for: entity, targetting: Vector3D(x: 4, y: 4, z: 1))
         XCTAssertNil(maybeMoveAction)
     }
@@ -176,5 +176,23 @@ final class ActionTests: XCTestCase {
         ]
         
         XCTAssertEqual(moveAction.path, expected)
+    }
+    
+    func test_moveAction_reachableTiles_doesNotContain_occupiedTiles() {
+        let entity = Entity(sprite: "Example Entity", startPosition: .zero)
+        let otherEntity = Entity(sprite: "I am in the way", startPosition: Vector3D(x: 1, y: 1, z: 1))
+        
+        let reachableTiles = MoveAction.reachableTiles(in: exampleMap, for: entity, allEntities: [entity, otherEntity])
+        
+        XCTAssertFalse(reachableTiles.contains(otherEntity.position))
+    }
+    
+    func test_moveAction_make_returnsNil_forOccupiedTile() {
+        let entity = Entity(sprite: "Example Entity", startPosition: .zero)
+        let otherEntity = Entity(sprite: "I am in the way", startPosition: Vector3D(x: 1, y: 1, z: 1))
+        
+        let maybeMoveAction = MoveAction.make(in: exampleMap, for: entity, targetting: otherEntity.position, allEntities: [entity, otherEntity])
+        
+        XCTAssertNil(maybeMoveAction)
     }
 }

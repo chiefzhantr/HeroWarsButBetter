@@ -36,7 +36,7 @@ final class EntityTests: XCTestCase {
     
     func test_completeCurrentAction_callsActionComplete() {
         struct BlockAction: Action {
-            static func make(in map: HeroWarsButBetter.Map, for entity: HeroWarsButBetter.Entity, targetting: HeroWarsButBetter.Vector3D) -> BlockAction? {
+            static func make(in map: HeroWarsButBetter.Map, for entity: HeroWarsButBetter.Entity, targetting: HeroWarsButBetter.Vector3D, allEntities: [Entity] = []) -> BlockAction? {
                 BlockAction(block: {})
             }
             

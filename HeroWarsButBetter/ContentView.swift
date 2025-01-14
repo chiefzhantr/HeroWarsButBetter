@@ -16,8 +16,8 @@ struct ContentView: View {
             [1, 1, 1, 2, 1],
             [2, 1, 1, 2, 1],
     ]), entities: [
-        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), maxHeightDifference: 1),
-        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 2, z: 1), maxHeightDifference: 1),
+        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1),
+        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 2, z: 1), range: 3, maxHeightDifference: 1),
         Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1), range: 4),
     ])
     

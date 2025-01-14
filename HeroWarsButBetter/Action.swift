@@ -10,8 +10,8 @@ import Foundation
 protocol Action {
     var description: String { get }
     var canComplete: Bool { get }
-    static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> Self?
-    static func reachableTiles(in map: Map, for entity: Entity) -> [Vector3D]
+    static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity]) -> Self?
+    static func reachableTiles(in map: Map, for entity: Entity, allEntities: [Entity]) -> [Vector3D]
     
     func complete()
 }
@@ -21,7 +21,7 @@ extension Action {
         print("Completed action: \(self)")
     }
     
-    static func reachableTiles(in map: Map, for entity: Entity) -> [Vector3D] {
+    static func reachableTiles(in map: Map, for entity: Entity, allEntities: [Entity] = []) -> [Vector3D] {
         map.tiles.keys.map { map.convertTo3D($0) }
     }
     
@@ -35,15 +35,15 @@ extension Action {
 }
 
 struct DummyAction: Action {
-    static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> DummyAction? {
+    static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity]) -> DummyAction? {
         DummyAction()
     }
     
 }
 
 struct MoveAction: Action {
-    static func make(in map: Map, for entity: Entity, targetting: Vector3D) -> MoveAction? {
-        guard reachableTiles(in: map, for: entity).contains(targetting) else {
+    static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity] = []) -> MoveAction? {
+        guard reachableTiles(in: map, for: entity, allEntities: allEntities).contains(targetting) else {
             return nil
         }
         
@@ -78,12 +78,19 @@ struct MoveAction: Action {
         path.isEmpty == false
     }
     
-    static func reachableTiles(in map: Map, for entity: Entity) -> [Vector3D] {
+    static func reachableTiles(in map: Map, for entity: Entity, allEntities: [Entity] = []) -> [Vector3D] {
+        let occcupiedTiles = allEntities.map { $0.position.xy }
         let dijkstra = map.dijkstra(target: entity.position.xy, maxHeightDifference: entity.maxHeightDifference)
-        return dijkstra.filter {
-            $0.value <= entity.range
-        }.map {
-            map.convertTo3D($0.key)
-        }
+        
+        return dijkstra
+            .filter {
+                $0.value <= entity.range
+            }
+            .filter {
+                occcupiedTiles.contains($0.key) == false
+            }
+            .map {
+                map.convertTo3D($0.key)
+            }
     }
 }
