@@ -40,9 +40,20 @@ struct Map {
         Vector3D(x: coord.x, y: coord.y, z: self[coord])
     }
     
-    func getNeighboursFor(_ node: Vector2D) -> [Vector2D] {
+    func enterable(from: Vector2D, to: Vector2D, maxHeightDifference: Int) -> Bool {
+        guard let neighbourHeight = tiles[from], let nodeHeight = tiles[to] else {
+            return false
+        }
+        
+        return abs(neighbourHeight - nodeHeight) <= maxHeightDifference
+    }
+    
+    func getNeighboursFor(_ node: Vector2D, maxHeightDifference: Int = Int.max) -> [Vector2D] {
         node.neighbours.filter {
             tiles.keys.contains($0)
+        }
+        .filter {
+            enterable(from: $0, to: node, maxHeightDifference: maxHeightDifference)
         }
     }
     
@@ -50,7 +61,7 @@ struct Map {
         1 + abs(self[from] - self[to])
     }
     
-    func dijkstra(target: Vector2D) -> [Vector2D: Int] {
+    func dijkstra(target: Vector2D, maxHeightDifference: Int = Int.max) -> [Vector2D: Int] {
         var unvisited = Set<Vector2D>()
         var visited = Set<Vector2D>()
         var dist = [Vector2D: Int]()
@@ -59,7 +70,7 @@ struct Map {
         dist[target] = 0
         var currentNode = target
         while unvisited.isEmpty == false {
-            let neighbours = getNeighboursFor(currentNode)
+            let neighbours = getNeighboursFor(currentNode, maxHeightDifference: maxHeightDifference)
             for neighbour in neighbours {
                 if visited.contains(neighbour) == false {
                     unvisited.insert(neighbour)
@@ -83,7 +94,7 @@ struct Map {
         return dist
     }
     
-    func getPath(to coord: Vector2D, using dijkstraMap: [Vector2D: Int]) -> [Vector2D] {
+    func getPath(to coord: Vector2D, using dijkstraMap: [Vector2D: Int], maxHeightDifference: Int = Int.max) -> [Vector2D] {
         var path = [coord]
         
         guard dijkstraMap.keys.contains(coord) else {
@@ -92,9 +103,16 @@ struct Map {
         var current = coord
         while dijkstraMap[current] != 0 {
             let neighbours = current.neighbours
-            current = neighbours.min(by: {
+            let newCurrent = neighbours.filter {
+                enterable(from: $0, to: current, maxHeightDifference: maxHeightDifference)
+            }.min(by: {
                 dijkstraMap[$0, default: Int.max] < dijkstraMap[$1, default: Int.max]
-            })!
+            })
+            if let newCurrent {
+                current = newCurrent
+            } else {
+                return []
+            }
             path.append(current)
         }
         

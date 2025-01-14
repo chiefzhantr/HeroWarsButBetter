@@ -12,15 +12,20 @@ final class Entity {
     var position: Vector3D
     var rotation = Rotation.defaultRotation
     var currentAction: Action?
+    let range: Int
+    let maxHeightDifference: Int
     
-    init(sprite: String, startPosition: Vector3D, rotation: Rotation = .defaultRotation) {
+    init(sprite: String, startPosition: Vector3D, range: Int = 3, maxHeightDifference: Int = Int.max) {
         self.position = startPosition
         self.sprite = sprite
-        self.rotation = rotation
+        self.range = range
+        self.maxHeightDifference = maxHeightDifference
     }
     
     func copy() -> Entity {
-        Entity(sprite: sprite, startPosition: position, rotation: rotation)
+        let copy = Entity(sprite: sprite, startPosition: position)
+        copy.rotation = rotation
+        return copy
     }
     
     func completeCurrentAction() {

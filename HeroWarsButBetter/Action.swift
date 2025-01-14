@@ -47,8 +47,8 @@ struct MoveAction: Action {
             return nil
         }
         
-        let dijkstra = map.dijkstra(target: entity.position.xy)
-        let path = map.getPath(to: targetting.xy, using: dijkstra).map {
+        let dijkstra = map.dijkstra(target: entity.position.xy, maxHeightDifference: entity.maxHeightDifference)
+        let path = map.getPath(to: targetting.xy, using: dijkstra, maxHeightDifference: entity.maxHeightDifference).map {
             map.convertTo3D($0)
         }
         return MoveAction(owner: entity, path: path)
@@ -79,10 +79,9 @@ struct MoveAction: Action {
     }
     
     static func reachableTiles(in map: Map, for entity: Entity) -> [Vector3D] {
-        let dijkstra = map.dijkstra(target: entity.position.xy)
-        
+        let dijkstra = map.dijkstra(target: entity.position.xy, maxHeightDifference: entity.maxHeightDifference)
         return dijkstra.filter {
-            $0.value <= 3
+            $0.value <= entity.range
         }.map {
             map.convertTo3D($0.key)
         }
