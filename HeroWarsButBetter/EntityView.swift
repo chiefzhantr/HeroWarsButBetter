@@ -20,6 +20,8 @@ struct EntityView: View {
             Text("\(entity.sprite)")
                 .font(.headline)
                 .foregroundStyle(.white)
+            Text("\(entity.currentAction?.description ?? "Idle")")
+                .foregroundStyle(.red)
             Text("HP: ###/###")
                 .font(.subheadline)
                 .foregroundStyle(.red)
@@ -35,7 +37,7 @@ struct EntityView: View {
                     }
                     .buttonStyle(BorderedProminentButtonStyle())
                     Button("Attack") {
-                        viewModel.currentAction = DummyAction()
+                        viewModel.currentAction = MeleeAttackAction()
                         viewModel.redraw?()
                     }
                     .buttonStyle(BorderedProminentButtonStyle())

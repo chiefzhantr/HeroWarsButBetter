@@ -19,11 +19,15 @@ final class EntityTests: XCTestCase {
     func test_copy_returnAnInstanceWithSamePropertiesAsOriginal() {
         let entity = Entity(sprite: UUID().uuidString, startPosition: .random)
         entity.rotation = .degrees225
+        entity.currentHP -= 1
+        entity.currentAction = DummyAction()
         
         let copy = entity.copy()
         XCTAssertEqual(copy.sprite, entity.sprite)
         XCTAssertEqual(copy.position, entity.position)
         XCTAssertEqual(copy.rotation, entity.rotation)
+        XCTAssertEqual(copy.currentHP, entity.currentHP)
+        XCTAssertEqual(copy.currentAction?.description, entity.currentAction?.description)
     }
      
     func test_completeCurrentAction_setsCurrentActionToNil() {
