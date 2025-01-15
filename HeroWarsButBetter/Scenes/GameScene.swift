@@ -82,12 +82,11 @@ class GameScene: SKScene {
             sprite.position = CGPoint(x: entityScreenPosition.x, y: entityScreenPosition.y)
             sprite.zPosition = CGFloat(convertWorldToZPosition(entity.position + Vector3D(x: 0, y: 0, z: 2), direction: rotation))
             
-            if let moveAnimation = createFollowPathAnimationForEntity(entity) {
-                sprite.run(moveAnimation)
+            if let animation = createAnimationForEntity(entity) {
+                sprite.run(animation)
             } else {
                 sprite.run(.repeatForever(getAnimationForEntity(entity, animation: "Idle")))
             }
-
             rootNode.addChild(sprite)
         }
         
@@ -124,6 +123,31 @@ class GameScene: SKScene {
         return animation
     }
     
+    func createAnimationForEntity(_ entity: Entity) -> SKAction? {
+        guard let currentAction = entity.currentAction else {
+            return nil
+        }
+        
+        switch type(of: currentAction) {
+        case is MoveAction.Type:
+            return createFollowPathAnimationForEntity(entity)
+        case is MeleeAttackAction.Type:
+            return createMeleeAttackActionForEntity(entity)
+        case is TakeDamageAction.Type:
+            return createTakeDamageAnimationForEntity(entity)
+        default:
+            print("not impl action type: \(currentAction). Returning fallback anim compl")
+            return createCompleteActionForEntity(entity)
+        }
+    }
+    
+    func createCompleteActionForEntity(_ entity: Entity) -> SKAction {
+        return SKAction.customAction(withDuration: 0.001) { [weak self] _, _ in
+            entity.completeCurrentAction()
+            self?.redraw()
+        }
+    }
+    
     func createFollowPathAnimationForEntity(_ entity: Entity) -> SKAction? {
         
         guard let moveAction = entity.currentAction as? MoveAction else {
@@ -152,20 +176,45 @@ class GameScene: SKScene {
             movementActions.append(.group([animation, movementAction, zPositionAction]))
         }
         
-        let completeAction = SKAction.customAction(withDuration: 0.001) { [weak self] _, _ in
-            entity.completeCurrentAction()
-            self?.redraw()
-        } 
+        let completeAction = createCompleteActionForEntity(entity)
         movementActions.append(completeAction)
          
         return SKAction.sequence(movementActions)
+    }
+    
+    func createMeleeAttackActionForEntity(_ entity: Entity) -> SKAction? {
+        guard let meleeAttackAction = entity.currentAction as? MeleeAttackAction else {
+            return nil
+        }
+        
+        guard let target = meleeAttackAction.target else {
+            return nil
+        }
+        
+        let stuntDouble = entity.copy()
+        let newRotation = Rotation.fromLookDirection(target.position.xy - entity.position.xy) ?? stuntDouble.rotation
+        stuntDouble.rotation = newRotation
+        
+        let attackAnimation = getAnimationForEntity(stuntDouble, animation: "MeleeAttack")
+        let hitAction = SKAction.customAction(withDuration: 0.001) { _, _ in
+            target.currentAction = TakeDamageAction()
+        }
+        let completeAction = createCompleteActionForEntity(entity)
+        return SKAction.sequence([attackAnimation, hitAction, completeAction])
+    }
+    
+    func createTakeDamageAnimationForEntity(_ entity: Entity) -> SKAction? {
+        let stuntDouble = entity.copy()
+        let animation = getAnimationForEntity(stuntDouble, animation: "TakeDamage")
+        let completeAction = createCompleteActionForEntity(entity)
+        
+        return SKAction.sequence([animation, completeAction])
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
         let map = viewModel.map
-        let entities = viewModel.entities
         let scenePoint = touch.location(in: self)
         let nodeCoords = nodes(at: scenePoint)
             .sorted {($0.position - scenePoint).sqrMagnitude < ($1.position - scenePoint).sqrMagnitude}

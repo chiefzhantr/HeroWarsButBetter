@@ -22,7 +22,7 @@ struct EntityView: View {
                 .foregroundStyle(.white)
             Text("\(entity.currentAction?.description ?? "Idle")")
                 .foregroundStyle(.red)
-            Text("HP: ###/###")
+            Text("HP: \(entity.currentHP)/###")
                 .font(.subheadline)
                 .foregroundStyle(.red)
             Text("MP: ###/###")
