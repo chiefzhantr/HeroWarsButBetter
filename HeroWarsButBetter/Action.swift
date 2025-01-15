@@ -97,6 +97,9 @@ struct MoveAction: Action {
 
 struct MeleeAttackAction: Action {
     
+    weak var owner: Entity?
+    weak var target: Entity?
+    
     static func reachableTiles(in map: Map, for entity: Entity, allEntities: [Entity]) -> [Vector3D] {
         entity.position.xy.neighbours.map {
             map.convertTo3D($0)
@@ -114,12 +117,19 @@ struct MeleeAttackAction: Action {
         }) else {
             return nil
         }
-        return MeleeAttackAction(target: targetEntity)
+        return MeleeAttackAction(owner: entity, target: targetEntity)
     }
-    var target: Entity?
     
     func complete() {
-        target?.currentHP -= 3
+        target?.takeDamage(3)
+        
+        guard let owner, let target else {
+            return
+        }
+        let attackDirection = Rotation.fromLookDirection(target.position.xy - owner.position.xy) ?? owner.rotation
+        
+        owner.rotation = attackDirection
+        target.rotation = attackDirection.rotated90DegreesClockwise.rotated90DegreesClockwise
     }
     
     var canComplete: Bool {
