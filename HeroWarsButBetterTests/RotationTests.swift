@@ -54,4 +54,30 @@ final class RotationTests: XCTestCase {
     func test_fromLookRotation_returnNil_whenAVectorOfZeroLengthIsPassedIn() {
         XCTAssertNil(Rotation.fromLookDirection(.zero))
     }
+    
+    func test_fromLookDirection_returnsCorrectRotation_fromCarthesianVectors_ofLengthLongerThanOne() {
+        let testcases: [(lookDirection: Vector2D, expected: Rotation?)] = [
+            (Vector2D(x: 0, y: 4), .degrees135),
+            (Vector2D(x: 6, y: 0), .degrees45),
+            (Vector2D(x: 0, y: -4), .degrees315),
+            (Vector2D(x: -9, y: 0), .degrees225),
+        ]
+        
+        for testcase in testcases {
+            XCTAssertEqual(Rotation.fromLookDirection(testcase.lookDirection), testcase.expected)
+        }
+    }
+    
+    func test_fromLookDirection_returnsCorrectRotation_fromNonCarthesianVectors_ofLengthLongerThanOne() {
+        let testcases: [(lookDirection: Vector2D, expected: Rotation?)] = [
+            (Vector2D(x: 2, y: 4), .degrees135),
+            (Vector2D(x: 6, y: 3), .degrees45),
+            (Vector2D(x: -2, y: -4), .degrees315),
+            (Vector2D(x: -9, y: 4), .degrees225),
+        ]
+        
+        for testcase in testcases {
+            XCTAssertEqual(Rotation.fromLookDirection(testcase.lookDirection), testcase.expected)
+        }
+    }
 }

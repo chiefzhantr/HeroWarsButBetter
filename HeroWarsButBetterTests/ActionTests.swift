@@ -196,61 +196,81 @@ final class ActionTests: XCTestCase {
         XCTAssertNil(maybeMoveAction)
     }
     
-    func test_meleeAttackAction_complete_lowersHPOfTarget() {
+    func test_AttackAction_complete_lowersHPOfTarget() {
         let entity = Entity(sprite: "Example Entity", startPosition: .zero)
-        let attackAction = MeleeAttackAction(target: entity)
+        let attackAction = AttackAction(target: entity)
         let originalHP = entity.currentHP
         attackAction.complete()
         XCTAssertLessThan(entity.currentHP, originalHP)
     }
     
-    func test_meleeAttackAction_make_setsTarget_toEntity_atPosition() throws {
+    func test_AttackAction_make_setsTarget_toEntity_atPosition() throws {
         let entity = Entity(sprite: "Example Entity", startPosition: Vector3D(x: 0, y: 0, z: 1))
         let target = Entity(sprite: "Target Entity", startPosition: Vector3D(x: 0, y: 1, z: 1))
         
-        let meleeAttackAction = try XCTUnwrap(MeleeAttackAction.make(in: exampleMap, for: entity, targetting: target.position, allEntities: [entity, target]))
+        let AttackAction = try XCTUnwrap(AttackAction.make(in: exampleMap, for: entity, targetting: target.position, allEntities: [entity, target]))
         
-        let targetInAction = try XCTUnwrap(meleeAttackAction.target)
+        let targetInAction = try XCTUnwrap(AttackAction.target)
         XCTAssertTrue(targetInAction === target)
     }
     
-    func test_meleeAttackAction_make_returnNil_whenPositionWithoutEntity_isPassedIn() {
+    func test_AttackAction_make_returnNil_whenPositionWithoutEntity_isPassedIn() {
         let entity = Entity(sprite: "Example Entity", startPosition: Vector3D(x: 0, y: 0, z: 1))
         let target = Entity(sprite: "Target Entity", startPosition: Vector3D(x: 0, y: 1, z: 1))
         
-        let maybeMeleeAttackAction = MeleeAttackAction.make(in: exampleMap, for: entity, targetting: Vector3D(x: 1, y: 0, z: 1), allEntities: [entity, target])
+        let maybeAttackAction = AttackAction.make(in: exampleMap, for: entity, targetting: Vector3D(x: 1, y: 0, z: 1), allEntities: [entity, target])
         
-        XCTAssertNil(maybeMeleeAttackAction)
+        XCTAssertNil(maybeAttackAction)
     }
     
-    func test_meleeAttackAction_make_returnNil_whenPositionOutOfRange_isPassedIn() {
+    func test_AttackAction_make_returnNil_whenPositionOutOfRange_isPassedIn() {
         let entity = Entity(sprite: "Example Entity", startPosition: Vector3D(x: 0, y: 0, z: 1))
         let target = Entity(sprite: "Target Entity", startPosition: Vector3D(x: 0, y: 2, z: 1))
         
-        let maybeMeleeAttackAction = MeleeAttackAction.make(in: exampleMap, for: entity, targetting: target.position, allEntities: [entity, target])
+        let maybeAttackAction = AttackAction.make(in: exampleMap, for: entity, targetting: target.position, allEntities: [entity, target])
         
-        XCTAssertNil(maybeMeleeAttackAction)
+        XCTAssertNil(maybeAttackAction)
     }
     
-    func test_meleeAttackAction_canComplete_returnsFalse_whenTargetIsNil() {
+    func test_AttackAction_canComplete_returnsFalse_whenTargetIsNil() {
         let entity = Entity(sprite: "Example Entity", startPosition: Vector3D(x: 0, y: 0, z: 1))
         let target = Entity(sprite: "Target Entity", startPosition: Vector3D(x: 0, y: 2, z: 1))
-        let meleeAttackAction = MeleeAttackAction(target: target)
-        XCTAssertTrue(meleeAttackAction.canComplete)
+        let AttackAction = AttackAction(target: target)
+        XCTAssertTrue(AttackAction.canComplete)
     }
     
-    func test_meleeAttackAction_description() {
+    func test_AttackAction_description() {
         let target = Entity(sprite: "Target", startPosition: Vector3D(x: 0, y: 2, z: 1))
-        let meleeAttackAction = MeleeAttackAction(target: target)
-        XCTAssertEqual(meleeAttackAction.description, "Attack Target")
+        let attackAction = AttackAction(target: target)
+        XCTAssertEqual(attackAction.description, "Attack Target")
     }
     
-    func test_meleeAttackAction_afterCompletion_targetAndAttacker_faceEachOther() {
+    func test_AttackAction_afterCompletion_targetAndAttacker_faceEachOther() {
         let attacker = Entity(sprite: "Attacking Entity", startPosition: Vector3D(x: 0, y: 0, z: 1))
         let target = Entity(sprite: "Target Entity", startPosition: .init(x: 0, y: 1, z: 1))
-        let meleeAttackAction = MeleeAttackAction(owner: attacker, target: target)
+        let attackAction = AttackAction(owner: attacker, target: target)
         
-        meleeAttackAction.complete()
+        attackAction.complete()
+        
+        XCTAssertEqual(attacker.rotation, .degrees135)
+        XCTAssertEqual(target.rotation, .degrees315)
+    }
+    
+    func test_attackAction_make_doesNotReturnNil_whenWithinRangedAttackRange() {
+        let attacker = Entity(sprite: "Attacking Entity", startPosition: Vector3D(x: 0, y: 0, z: 1), attackRange: 3)
+        let target = Entity(sprite: "Target Entity", startPosition: .init(x: 0, y: 3, z: 1))
+        
+        let maybeAttackAction = AttackAction.make(in: exampleMap, for: attacker, targetting: target.position, allEntities: [attacker, target])
+        
+        XCTAssertNotNil(maybeAttackAction)
+    }
+    
+    func test_AttackAction_afterCompletion_targetAndAttacker_faceEachOther_forRangedAttack() {
+        let attacker = Entity(sprite: "Attacking Entity", startPosition: Vector3D(x: 0, y: 0, z: 1))
+        let target = Entity(sprite: "Target Entity", startPosition: .init(x: 0, y: 3, z: 1))
+        let attackAction = AttackAction(owner: attacker, target: target)
+        
+        attackAction.complete()
         
         XCTAssertEqual(attacker.rotation, .degrees135)
         XCTAssertEqual(target.rotation, .degrees315)

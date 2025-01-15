@@ -37,7 +37,7 @@ struct EntityView: View {
                     }
                     .buttonStyle(BorderedProminentButtonStyle())
                     Button("Attack") {
-                        viewModel.currentAction = MeleeAttackAction()
+                        viewModel.currentAction = AttackAction()
                         viewModel.redraw?()
                     }
                     .buttonStyle(BorderedProminentButtonStyle())

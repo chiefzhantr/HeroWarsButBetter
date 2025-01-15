@@ -95,18 +95,25 @@ struct MoveAction: Action {
     }
 }
 
-struct MeleeAttackAction: Action {
+struct AttackAction: Action {
     
     weak var owner: Entity?
     weak var target: Entity?
     
     static func reachableTiles(in map: Map, for entity: Entity, allEntities: [Entity]) -> [Vector3D] {
-        entity.position.xy.neighbours.map {
-            map.convertTo3D($0)
-        }
+        
+        let dijkstra = map.dijkstra(target: entity.position.xy)
+        
+        return dijkstra
+            .filter {
+                $0.value <= entity.attackRange
+            }
+            .map {
+                map.convertTo3D($0.key)
+            }
     }
     
-    static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity]) -> MeleeAttackAction? {
+    static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity]) -> AttackAction? {
         
         guard reachableTiles(in: map, for: entity, allEntities: allEntities).contains(targetting) else {
             return nil
@@ -117,7 +124,7 @@ struct MeleeAttackAction: Action {
         }) else {
             return nil
         }
-        return MeleeAttackAction(owner: entity, target: targetEntity)
+        return AttackAction(owner: entity, target: targetEntity)
     }
     
     func complete() {
