@@ -15,6 +15,7 @@ class GameScene: SKScene {
     var rotation = Rotation.defaultRotation
     let cameraNode = SKCameraNode()
     let rootNode = SKNode()
+    let fxRootNode = SKNode()
     
     override func didMove(to view: SKView) {
         size = view.frame.size
@@ -27,6 +28,7 @@ class GameScene: SKScene {
         self.camera = cameraNode
         
         addChild(rootNode)
+        addChild(fxRootNode)
 
         redraw()
         
@@ -82,11 +84,17 @@ class GameScene: SKScene {
             sprite.position = CGPoint(x: entityScreenPosition.x, y: entityScreenPosition.y)
             sprite.zPosition = CGFloat(convertWorldToZPosition(entity.position + Vector3D(x: 0, y: 0, z: 2), direction: rotation))
             
-            if let animation = createAnimationForEntity(entity) {
+            let animationFX = createAnimationAndFXForEntity(entity)
+            if let animation = animationFX.animation {
                 sprite.run(animation)
             } else {
                 sprite.run(.repeatForever(getAnimationForEntity(entity, animation: "Idle")))
             }
+            
+            for fx in animationFX.fx {
+                fxRootNode.addChild(fx)
+            }
+            
             rootNode.addChild(sprite)
         }
         
@@ -104,112 +112,6 @@ class GameScene: SKScene {
     func rotateCCW() {
         rotation = rotation.rotated90DegreesCounterClockwise
         redraw()
-    }
-    
-    func getAnimationForEntity(_ entity: Entity, animation: String) -> SKAction {
-        let animationName = getAnimationNameForEntity(entity, animation: animation, referenceRotation: rotation)
-        let frames = [
-            "\(animationName)_0",
-            "\(animationName)_1",
-            "\(animationName)_2",
-            "\(animationName)_3"
-        ]
-            .map { SKTexture(imageNamed: $0) }
-            .map { frame in
-                frame.filteringMode = .nearest
-                return frame
-            }
-        let animation = SKAction.animate(with: frames, timePerFrame: 0.25)
-        return animation
-    }
-    
-    func createAnimationForEntity(_ entity: Entity) -> SKAction? {
-        guard let currentAction = entity.currentAction else {
-            return nil
-        }
-        
-        switch type(of: currentAction) {
-        case is MoveAction.Type:
-            return createFollowPathAnimationForEntity(entity)
-        case is AttackAction.Type:
-            return createMeleeAttackActionForEntity(entity)
-        case is TakeDamageAction.Type:
-            return createTakeDamageAnimationForEntity(entity)
-        default:
-            print("not impl action type: \(currentAction). Returning fallback anim compl")
-            return createCompleteActionForEntity(entity)
-        }
-    }
-    
-    func createCompleteActionForEntity(_ entity: Entity) -> SKAction {
-        return SKAction.customAction(withDuration: 0.001) { [weak self] _, _ in
-            entity.completeCurrentAction()
-            self?.redraw()
-        }
-    }
-    
-    func createFollowPathAnimationForEntity(_ entity: Entity) -> SKAction? {
-        
-        guard let moveAction = entity.currentAction as? MoveAction else {
-            return nil
-        }
-        
-        var movementActions = [SKAction]()
-        let duration = 0.25
-        var lastCoord = entity.position.xy
-        for coord in moveAction.path {
-            let stuntDouble = entity.copy()
-            let newRotation = Rotation.fromLookDirection(coord.xy - lastCoord) ?? entity.rotation
-            stuntDouble.rotation = newRotation
-            lastCoord = coord.xy
-            let animation = getAnimationForEntity(stuntDouble, animation: "Walk")
-            
-            let screenCoord = convertWorldToScreen(coord, direction: rotation)
-            let screenPosition = CGPoint(x: screenCoord.x, y: screenCoord.y)
-            let movementAction = SKAction.move(to: screenPosition, duration: duration)
-            let zPosition = convertWorldToZPosition(coord + Vector3D(x: 0, y: 0, z: 2), direction: rotation)
-            let zPositionAction = SKAction.customAction(withDuration: duration) { node, time in
-                node.zPosition = CGFloat(zPosition)
-                
-            }
-            
-            movementActions.append(.group([animation, movementAction, zPositionAction]))
-        }
-        
-        let completeAction = createCompleteActionForEntity(entity)
-        movementActions.append(completeAction)
-         
-        return SKAction.sequence(movementActions)
-    }
-    
-    func createMeleeAttackActionForEntity(_ entity: Entity) -> SKAction? {
-        guard let meleeAttackAction = entity.currentAction as? AttackAction else {
-            return nil
-        }
-        
-        guard let target = meleeAttackAction.target else {
-            return nil
-        }
-        
-        let stuntDouble = entity.copy()
-        let newRotation = Rotation.fromLookDirection(target.position.xy - entity.position.xy) ?? stuntDouble.rotation
-        stuntDouble.rotation = newRotation
-        
-        let attackAnimation = getAnimationForEntity(stuntDouble, animation: "MeleeAttack")
-        let completeAction = createCompleteActionForEntity(entity)
-        return SKAction.sequence([attackAnimation, completeAction])
-    }
-    
-//    let hitAction = SKAction.customAction(withDuration: 0.001) { _, _ in
-//        target.currentAction = TakeDamageAction()
-//    }
-    
-    func createTakeDamageAnimationForEntity(_ entity: Entity) -> SKAction? {
-        let stuntDouble = entity.copy()
-        let animation = getAnimationForEntity(stuntDouble, animation: "TakeDamage")
-        let completeAction = createCompleteActionForEntity(entity)
-        
-        return SKAction.sequence([animation, completeAction])
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

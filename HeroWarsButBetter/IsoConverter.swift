@@ -43,7 +43,8 @@ let spriteAnimationMap = [
     "Rogue" : [
         "Idle": "2H_Melee_Idle",
         "Walk": "Walking_C",
-        "TakeDamage": "Hit_B"
+        "TakeDamage": "Hit_B",
+        "RangedAttack": "2H_Ranged_Shoot"
     ]
 ]
 
