@@ -196,6 +196,15 @@ final class ActionTests: XCTestCase {
         XCTAssertNil(maybeMoveAction)
     }
     
+    func test_reachableTiles_ignoresInactive_entities() {
+        let entity = Entity(sprite: "Example Entity", startPosition: .zero)
+        let otherEntity = Entity(sprite: "Im dead", startPosition: Vector3D(x: 1, y: 1, z: 1))
+        otherEntity.currentHP = 0
+        let maybeMoveAction = MoveAction.make(in: exampleMap, for: entity, targetting: otherEntity.position, allEntities: [entity, otherEntity])
+        
+        XCTAssertNotNil(maybeMoveAction)
+    }
+    
     func test_AttackAction_complete_lowersHPOfTarget() {
         let entity = Entity(sprite: "Example Entity", startPosition: .zero)
         let attackAction = AttackAction(target: entity)
@@ -254,6 +263,16 @@ final class ActionTests: XCTestCase {
         
         XCTAssertEqual(attacker.rotation, .degrees135)
         XCTAssertEqual(target.rotation, .degrees315)
+    }
+    
+    func test_attackAction_make_returnsNil_whenPositionOfInactiveEntity_isPassedIn() {
+        let entity = Entity(sprite: "Example Entity", startPosition: Vector3D(x: 0, y: 0, z: 1))
+        let otherEntity = Entity(sprite: "Target Entity", startPosition: Vector3D(x: 0, y: 1, z: 1))
+        otherEntity.currentHP = 0
+         
+        let maybeAttackAction = AttackAction.make(in: exampleMap, for: entity, targetting: otherEntity.position, allEntities: [entity, otherEntity])
+        
+        XCTAssertNil(maybeAttackAction)
     }
     
     func test_attackAction_make_doesNotReturnNil_whenWithinRangedAttackRange() {

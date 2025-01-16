@@ -27,8 +27,11 @@ struct ContentView: View {
         ZStack {
             SpriteView(scene: scene)
             VStack {
-                Text("Current team: \(viewModel.battle.activeTeam)")
+                Text("State: \(viewModel.battle.state)")
                     .padding(.top, 32)
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                Text("Current team: \(viewModel.battle.activeTeam)")
                     .foregroundStyle(.white)
                 if viewModel.battle.activeTeam != "Player" {
                     Button("Let enemies act") {

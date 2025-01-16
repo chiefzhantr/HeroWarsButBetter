@@ -76,8 +76,8 @@ class GameScene: SKScene {
                 }
             }
         }
-        
-        for entity in entities {
+        let entitiesToDraw = entities.filter { $0.shouldDraw }
+        for entity in entitiesToDraw {
             let sprite = SKSpriteNode(imageNamed: getIdleAnimationFirstFrameNameForEntity(entity, referenceRotation: rotation))
             let entityScreenPosition = convertWorldToScreen(entity.position, direction: rotation)
             sprite.anchorPoint = CGPoint(x: 0.5, y: 0.3)
@@ -139,5 +139,11 @@ extension CGPoint {
     
     var sqrMagnitude: Double {
         x * x + y * y
+    }
+}
+
+extension Entity {
+    var shouldDraw: Bool {
+        isActive || currentAction != nil
     }
 }
