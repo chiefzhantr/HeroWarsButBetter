@@ -10,6 +10,7 @@ import Foundation
 protocol Action {
     var description: String { get }
     var canComplete: Bool { get }
+    var endsTurn: Bool { get }
     static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity]) -> Self?
     static func reachableTiles(in map: Map, for entity: Entity, allEntities: [Entity]) -> [Vector3D]
     
@@ -30,6 +31,10 @@ extension Action {
     }
     
     var canComplete: Bool {
+        true
+    }
+    
+    var endsTurn: Bool {
         true
     }
 }
@@ -149,6 +154,8 @@ struct AttackAction: Action {
 }
 
 struct TakeDamageAction: Action {
+    let endsTurn = false
+    
     static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity]) -> TakeDamageAction? {
         TakeDamageAction()
     }

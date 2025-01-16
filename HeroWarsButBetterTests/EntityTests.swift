@@ -59,6 +59,26 @@ final class EntityTests: XCTestCase {
         XCTAssertEqual(count, 1)
     }
     
+    func test_completeCurrentAction_sets_hasActed_toTrue_whenCurrentAction_isDone() {
+        let entity = Entity(sprite: "Entity", startPosition: .zero)
+        entity.currentAction = DummyAction()
+        entity.completeCurrentAction()
+        XCTAssertTrue(entity.hasActed)
+    }
+    
+    func test_completeCurrentAction_doesNotSet_hasActed_toTrue_whenCurrentAction_doesNotEndTurn() {
+        struct DummyActionThatDoesNotEndTurn: Action {
+            static func make(in map: HeroWarsButBetter.Map, for entity: HeroWarsButBetter.Entity, targetting: HeroWarsButBetter.Vector3D, allEntities: [HeroWarsButBetter.Entity]) -> DummyActionThatDoesNotEndTurn? {
+                DummyActionThatDoesNotEndTurn()
+            }
+            let endsTurn = false
+        }
+        let entity = Entity(sprite: "Entity", startPosition: .zero)
+        entity.currentAction = DummyActionThatDoesNotEndTurn()
+        entity.completeCurrentAction()
+        XCTAssertFalse(entity.hasActed)
+    }
+    
     func test_takeDamage_lowersHP() {
         let entity = Entity(sprite: "Entity", startPosition: .zero)
         let originalHP = entity.currentHP
@@ -77,4 +97,15 @@ final class EntityTests: XCTestCase {
         XCTAssertTrue(currentAction is TakeDamageAction)
     }
 
+    func test_aNewEntity_doesNotHaveATeam() {
+        let entity = Entity(sprite: "Entity", startPosition: .zero)
+        XCTAssertEqual(entity.team, "")
+    }
+    
+    func test_canSetAteam_forANewEntity_whenPassingInTeam() {
+        let entity = Entity(sprite: "Entity", startPosition: .zero, team: "A-team")
+        XCTAssertEqual(entity.team, "A-team")
+    }
+    
+    
 }

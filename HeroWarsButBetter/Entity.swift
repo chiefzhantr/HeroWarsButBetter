@@ -16,13 +16,16 @@ final class Entity {
     let maxHeightDifference: Int
     var currentHP = 10
     let attackRange: Int
+    let team: String
+    var hasActed = false
     
-    init(sprite: String, startPosition: Vector3D, range: Int = Int.max, maxHeightDifference: Int = Int.max, attackRange: Int = 1) {
+    init(sprite: String, startPosition: Vector3D, range: Int = Int.max, maxHeightDifference: Int = Int.max, attackRange: Int = 1, team: String = "") {
         self.position = startPosition
         self.sprite = sprite
         self.range = range
         self.maxHeightDifference = maxHeightDifference
         self.attackRange = attackRange
+        self.team = team
     }
     
     func copy() -> Entity {
@@ -35,6 +38,9 @@ final class Entity {
     
     func completeCurrentAction() {
         currentAction?.complete()
+        if currentAction?.endsTurn ?? false {
+            hasActed = true
+        }
         currentAction = nil
     }
     

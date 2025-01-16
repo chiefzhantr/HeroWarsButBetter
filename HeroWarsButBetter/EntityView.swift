@@ -17,7 +17,7 @@ struct EntityView: View {
     
     var body: some View {
         VStack {
-            Text("\(entity.sprite)")
+            Text("\(entity.sprite) (\(entity.team))")
                 .font(.headline)
                 .foregroundStyle(.white)
             Text("\(entity.currentAction?.description ?? "Idle")")
@@ -28,7 +28,9 @@ struct EntityView: View {
             Text("MP: ###/###")
                 .font(.subheadline)
                 .foregroundStyle(.blue)
-            if viewModel.currentAction == nil {
+            Text("Has acted: \(entity.hasActed)")
+                .foregroundStyle(.red)
+            if viewModel.currentAction == nil && entity.hasActed == false && entity.team == "Player" && viewModel.battle.activeTeam == "Player" {
                 HStack {
                     Button("Move") {
                         print("Move")

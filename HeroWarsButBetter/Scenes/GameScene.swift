@@ -98,10 +98,7 @@ class GameScene: SKScene {
             rootNode.addChild(sprite)
         }
         
-        print("Root node children count: \(rootNode.children.count)")
-        for node in rootNode.children {
-            print("Node position: \(node.position), userData: \(node.userData ?? [:])")
-        }
+        viewModel.redrawCount += 1
     }
     
     func rotateCW() {
