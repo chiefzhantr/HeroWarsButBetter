@@ -21,6 +21,12 @@ final class ViewModel: ObservableObject {
     let battle: Battle
     var redraw: (() -> Void)?
     
+    var isBusy: Bool {
+        entities.compactMap {
+            $0.currentAction
+        }.isEmpty == false
+    }
+    
     init(map: Map, entities: [Entity]) {
         self.map = map
         self.battle = Battle(entities: entities)
@@ -41,7 +47,7 @@ final class ViewModel: ObservableObject {
             }
         } else {
             selectedEntity = nil
-            if let entity = entities.first(where: { $0.position == tile }) {
+            if let entity = entities.first(where: { $0.position == tile }),entity.isActive {
                 selectedEntity = entity
             }
         }

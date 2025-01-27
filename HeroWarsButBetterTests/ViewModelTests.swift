@@ -68,6 +68,31 @@ final class ViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.selectedEntity)
     }
     
+    func test_clickTile_isBusy_whenAnyActionIsBeingPerformed() {
+        let entity1 = Entity(sprite: "Example Entity", startPosition: .random)
+        let entity2 = Entity(sprite: "Example Entity", startPosition: .random)
+        let viewModel = ViewModel(map: exampleMap, entities: [entity1, entity2])
+        entity1.currentAction = DummyAction()
+        XCTAssertTrue(viewModel.isBusy)
+    }
+    
+    func test_clickTile_isNotBusy_whenNoActionIsBeingPerformed() {
+        let entity1 = Entity(sprite: "Example Entity", startPosition: .random)
+        let entity2 = Entity(sprite: "Example Entity", startPosition: .random)
+        let viewModel = ViewModel(map: exampleMap, entities: [entity1, entity2])
+        XCTAssertFalse(viewModel.isBusy)
+    }
+    
+    func test_clickTile_ignoresDefeatedEntities() {
+        let entity = Entity(sprite: "Example Entity", startPosition: .random)
+        let viewModel = ViewModel(map: exampleMap, entities: [entity])
+        entity.currentHP = 0
+        
+        viewModel.clickTile(entity.position)
+        
+        XCTAssertNil(viewModel.selectedEntity)
+    }
+    
     var cancellables = Set<AnyCancellable>()
     var receivedTiles = [Vector3D?]()
     var receivedEntities = [Entity?]()
