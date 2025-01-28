@@ -149,6 +149,9 @@ struct AttackAction: Action {
         
         owner.rotation = attackDirection
         target.rotation = attackDirection.rotated90DegreesClockwise.rotated90DegreesClockwise
+        if target.currentHP > 0 && owner.currentHP > 0 {
+            target.currentAction = AttackAction(owner: target, target: owner)
+        }
     }
     
     var canComplete: Bool {

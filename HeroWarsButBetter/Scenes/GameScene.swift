@@ -126,7 +126,6 @@ class GameScene: SKScene {
         camera?.setScale(zoomLevel)
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     func processTap(at screenCoord: CGPoint) {
         let map = viewModel.map
         let scenePoint = convertPoint(fromView: screenCoord)
@@ -162,3 +161,9 @@ extension Entity {
         isActive || currentAction != nil
     }
 }
+// сделать аи атаку плеера после удара
+// показ хелза в виде математического уравнения
+// сменить юниты на лучников а моего плеера на мечника
+// сделать меню
+// сделать левелы
+// 

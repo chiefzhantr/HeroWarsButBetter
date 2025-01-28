@@ -35,7 +35,6 @@ final class ViewModel: ObservableObject {
     func clickTile(_ tile: Vector3D) {
         selectedTile = nil
         
-        
         if map.tiles.keys.contains(tile.xy) {
             selectedTile = tile
         }
