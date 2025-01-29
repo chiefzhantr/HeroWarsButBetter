@@ -51,6 +51,11 @@ final class Battle {
                 entity.hasActed = false
             }
         }
+        for entity in _entities {
+            if entity.team != "Player" {
+                entity.hasActed = true
+            }
+        }
     }
     
     var state: BattleState {

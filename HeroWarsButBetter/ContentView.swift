@@ -50,18 +50,6 @@ struct ContentView: View {
                     .padding(.top, 32)
                     .font(.headline)
                     .foregroundStyle(.white)
-                Text("Current team: \(viewModel.battle.activeTeam)")
-                    .foregroundStyle(.white)
-                if viewModel.battle.activeTeam != "Player" {
-                    Button("Let enemies act") {
-                        for entity in viewModel.entities.filter ({
-                            $0.team != "Player"
-                        }) {
-                            entity.currentAction = DummyAction()
-                        }
-                        viewModel.redraw?()
-                    }.buttonStyle(BorderedProminentButtonStyle())
-                }
                 HStack {
                     Spacer()
                     if viewModel.selectedEntity != nil {

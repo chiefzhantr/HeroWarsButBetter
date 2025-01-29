@@ -47,6 +47,11 @@ struct DummyAction: Action {
 }
 
 struct MoveAction: Action {
+    
+    var endsTurn: Bool {
+        false
+    }
+    
     static func make(in map: Map, for entity: Entity, targetting: Vector3D, allEntities: [Entity] = []) -> MoveAction? {
         guard reachableTiles(in: map, for: entity, allEntities: allEntities).contains(targetting) else {
             return nil
@@ -140,7 +145,14 @@ struct AttackAction: Action {
     }
     
     func complete() {
-        target?.takeDamage(3)
+        let targetFullHP = target?.fullHP ?? 0
+        let ownerFullHP = owner?.fullHP ?? 0
+        
+        if targetFullHP < ownerFullHP {
+            target?.takeDamage(targetFullHP)
+        } else {
+            target?.takeDamage(targetFullHP / 2)
+        }
         
         guard let owner, let target else {
             return
@@ -151,6 +163,9 @@ struct AttackAction: Action {
         target.rotation = attackDirection.rotated90DegreesClockwise.rotated90DegreesClockwise
         if target.currentHP > 0 && owner.currentHP > 0 {
             target.currentAction = AttackAction(owner: target, target: owner)
+        } else {
+            owner.fullHP += target.fullHP / 3
+            owner.currentHP = owner.fullHP
         }
     }
     

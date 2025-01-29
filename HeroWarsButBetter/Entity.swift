@@ -14,7 +14,8 @@ final class Entity {
     var currentAction: Action?
     let range: Int
     let maxHeightDifference: Int
-    var currentHP = 10
+    var fullHP = 10
+    lazy var currentHP = fullHP
     let attackRange: Int
     let team: String
     var hasActed = false

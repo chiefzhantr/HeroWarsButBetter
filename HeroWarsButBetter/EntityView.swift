@@ -25,11 +25,6 @@ struct EntityView: View {
             Text("HP: \(entity.currentHP)/###")
                 .font(.subheadline)
                 .foregroundStyle(.red)
-            Text("MP: ###/###")
-                .font(.subheadline)
-                .foregroundStyle(.blue)
-            Text("Has acted: \(entity.hasActed)")
-                .foregroundStyle(.red)
             if viewModel.currentAction == nil && entity.hasActed == false && entity.team == "Player" && viewModel.battle.activeTeam == "Player" {
                 HStack {
                     Button("Move") {
@@ -41,10 +36,6 @@ struct EntityView: View {
                     Button("Attack") {
                         viewModel.currentAction = AttackAction()
                         viewModel.redraw?()
-                    }
-                    .buttonStyle(BorderedProminentButtonStyle())
-                    Button("Face") {
-                        print("Face")
                     }
                     .buttonStyle(BorderedProminentButtonStyle())
                 }
