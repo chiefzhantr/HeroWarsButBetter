@@ -149,10 +149,10 @@ struct AttackAction: Action {
         let ownerFullHP = owner?.fullHP ?? 0
         
         if targetFullHP < ownerFullHP {
-//            SoundsPlayer.shared.playStrongPunch()
+            SoundsPlayer.shared.playStrongPunch()
             target?.takeDamage(targetFullHP)
         } else {
-//            SoundsPlayer.shared.playWeakPunch()
+            SoundsPlayer.shared.playWeakPunch()
             target?.takeDamage(targetFullHP / 3)
         }
         
@@ -166,9 +166,9 @@ struct AttackAction: Action {
         if target.currentHP > 0 && owner.currentHP > 0 {
             target.currentAction = AttackAction(owner: target, target: owner)
         } else {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-//                SoundsPlayer.shared.playExplosion()
-//            })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                SoundsPlayer.shared.playExplosion()
+            })
             owner.fullHP += target.fullHP / 2
             owner.currentHP = owner.fullHP
         }

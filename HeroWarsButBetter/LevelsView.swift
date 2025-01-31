@@ -10,16 +10,15 @@ import SwiftUI
 import SpriteKit
 
 struct LevelsView: View {
-    
-    @State private var isNavigating = false
-    
+    let levels = ["Level 1", "Level 2", "Level 3"]
+        
     var body: some View {
-        ZStack {
-            Image("levels")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-            
+        NavigationStack {
+            List(levels.indices, id: \.self) { index in
+                NavigationLink(levels[index], destination: ContentView(viewModel: ViewModel.levels[index]))
+                    .font(.headline)
+            }
+            .navigationTitle("Levels")
         }
     }
 }

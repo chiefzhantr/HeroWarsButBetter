@@ -30,6 +30,10 @@ final class SoundsPlayer {
         let url = getUrl(name: "lost")
         playSound(url: url)
     }
+    func playBackground() {
+        let url = getUrl(name: "background")
+        playSound(url: url)
+    }
     
     func getUrl(name: String) -> URL {
         let pathToSound = Bundle.main.path(forResource: name, ofType: "mp3")!

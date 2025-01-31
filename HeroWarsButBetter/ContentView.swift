@@ -9,10 +9,12 @@ import SwiftUI
 import SpriteKit
 
 struct ContentView: View {
-    @StateObject var viewModel: ViewModel = ViewModel.levels[0]
+    @ObservedObject var viewModel: ViewModel
     let scene = GameScene()
     
-    init(viewModel: ViewModel = ViewModel.levels[0]) {}
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View { 
         ZStack {
@@ -87,6 +89,7 @@ struct ContentView: View {
         .onAppear(perform: {
             scene.viewModel = viewModel
         })
+        .navigationBarBackButtonHidden(true)
     }
 }
 
