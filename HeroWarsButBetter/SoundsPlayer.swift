@@ -12,27 +12,54 @@ final class SoundsPlayer {
     
     static let shared = SoundsPlayer()
     
-    var audioPlayer: AVAudioPlayer?
+    var weakPunchPlayer: AVAudioPlayer?
+    var strongPunchPlayer: AVAudioPlayer?
+    var explosionPlayer: AVAudioPlayer?
+    var lostPlayer: AVAudioPlayer?
+    var backgroundPlayer: AVAudioPlayer?
+    var winPlayer: AVAudioPlayer?
     
     func playWeakPunch() {
         let url = getUrl(name: "weak_punch")
-        playSound(url: url)
+        playSound(url: url, audioPlayer: &weakPunchPlayer)
     }
     func playStrongPunch() {
         let url = getUrl(name: "strong_punch")
-        playSound(url: url)
+        playSound(url: url, audioPlayer: &strongPunchPlayer)
     }
     func playExplosion() {
         let url = getUrl(name: "explosion")
-        playSound(url: url)
+        playSound(url: url, audioPlayer: &explosionPlayer)
     }
     func playLost() {
         let url = getUrl(name: "lost")
-        playSound(url: url)
+        playSound(url: url, audioPlayer: &lostPlayer)
+        if let winPlayer = winPlayer {
+            winPlayer.stop()
+        }
+        if let backgroundPlayer = backgroundPlayer {
+            backgroundPlayer.stop()
+        }
+    }
+    func playWin() {
+        let url = getUrl(name: "win")
+        playSound(url: url, audioPlayer: &winPlayer)
+        if let lostPlayer = lostPlayer {
+            lostPlayer.stop()
+        }
+        if let backgroundPlayer = backgroundPlayer {
+            backgroundPlayer.stop()
+        }
     }
     func playBackground() {
         let url = getUrl(name: "background")
-        playSound(url: url)
+        playSound(url: url, audioPlayer: &backgroundPlayer)
+        if let winPlayer = winPlayer {
+            winPlayer.stop()
+        }
+        if let lostPlayer = lostPlayer {
+            lostPlayer.stop()
+        }
     }
     
     func getUrl(name: String) -> URL {
@@ -41,7 +68,7 @@ final class SoundsPlayer {
         return url
     }
     
-    func playSound(url: URL) {
+    func playSound(url: URL, audioPlayer: inout AVAudioPlayer?) {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.play()

@@ -23,7 +23,7 @@ struct EntityView: View {
             Text("\(entity.currentAction?.description ?? "Idle")")
                 .foregroundStyle(.red)
             if entity.team == "Player" {
-                Text("HP: \(entity.fullHP)")
+                Text("LVL: \(entity.fullHP)")
                     .font(.subheadline)
                     .foregroundStyle(.red)
             } else {

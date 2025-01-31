@@ -148,7 +148,7 @@ struct AttackAction: Action {
         let targetFullHP = target?.fullHP ?? 0
         let ownerFullHP = owner?.fullHP ?? 0
         
-        if targetFullHP < ownerFullHP {
+        if targetFullHP <= ownerFullHP {
             SoundsPlayer.shared.playStrongPunch()
             target?.takeDamage(targetFullHP)
         } else {

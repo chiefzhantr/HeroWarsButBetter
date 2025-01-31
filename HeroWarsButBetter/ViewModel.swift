@@ -61,6 +61,7 @@ final class ViewModel: ObservableObject {
 
 extension ViewModel {
     static let levels = [
+        //1
         ViewModel(map: Map(heightMap: [
             [1,1,1,1,1],
             [1,1,1,1,1],
@@ -68,10 +69,13 @@ extension ViewModel {
             [1,1,1,1,1],
             [1,1,1,1,1],
         ]), entities: [
-            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "Player", fullHP: 2, expressionHP: "4 - 2"),
-            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 2, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 3, expressionHP: "2 - 1"),
-            Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 3, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 1, expressionHP: "2*3 - 3"),
+            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "Player", fullHP: 3, expressionHP: "3"),
+            Entity(sprite: "Knight", startPosition: Vector3D(x: 3, y: 2, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 3, expressionHP: "3*2 - 1 - 5/5 - 4/2 + 1"),
+            Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 3, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 2, expressionHP: "2*3 - 3 - 4*3 + 2*9 - 12 + 6 + 2"),
+            Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 4, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 5, expressionHP: "(2 × 3) - (√9 - 1)"),
         ]),
+        
+        //2
         ViewModel(map: Map(heightMap: [
             [1,1,1,1],
             [1,1,1,1],
@@ -82,15 +86,17 @@ extension ViewModel {
             Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 4, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 1, expressionHP: "2 - 1"),
             Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 3, expressionHP: "2*3 - 3"),
         ]),
-    ViewModel(map: Map(heightMap: [
-            [1,1,1,1],
-            [1,1,1,1],
-            [1,1,1,1],
-            [1,1,1,1],
-        ]), entities: [
-            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "Player", fullHP: 2, expressionHP: "4 - 2"),
-            Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 4, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 1, expressionHP: "2 - 1"),
-            Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 3, expressionHP: "2*3 - 3"),
-        ])
-    ]
+        
+        //3
+        ViewModel(map: Map(heightMap: [
+                [1,1,1,1],
+                [1,1,1,1],
+                [1,1,1,1],
+                [1,1,1,1],
+            ]), entities: [
+                Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "Player", fullHP: 2, expressionHP: "4 - 2"),
+                Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 4, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 1, expressionHP: "2 - 1"),
+                Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 3, expressionHP: "2*3 - 3"),
+            ])
+        ]
 }
