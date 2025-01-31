@@ -24,9 +24,11 @@ struct LostView: View {
                 Text("You LOST!")
                     .font(.title)
                     .foregroundColor(.black)
+                    .bold()
                 Text("WHY ARE YOU UPSETING ILIAS????")
                     .font(.title3)
                     .foregroundColor(.black)
+                    .bold()
             }
         }
         .onAppear(perform: {

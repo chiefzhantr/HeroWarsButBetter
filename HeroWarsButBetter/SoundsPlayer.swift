@@ -53,7 +53,7 @@ final class SoundsPlayer {
     }
     func playBackground() {
         let url = getUrl(name: "background")
-        playSound(url: url, audioPlayer: &backgroundPlayer)
+        playSound(url: url, audioPlayer: &backgroundPlayer, volume: 0.2)
         if let winPlayer = winPlayer {
             winPlayer.stop()
         }
@@ -68,9 +68,10 @@ final class SoundsPlayer {
         return url
     }
     
-    func playSound(url: URL, audioPlayer: inout AVAudioPlayer?) {
+    func playSound(url: URL, audioPlayer: inout AVAudioPlayer?, volume: Float = 1) {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = volume
             audioPlayer?.play()
         }
         catch {

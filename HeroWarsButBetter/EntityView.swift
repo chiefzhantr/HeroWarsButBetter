@@ -28,11 +28,11 @@ struct EntityView: View {
                     .foregroundStyle(.red)
             } else {
                 if entity.fullHP == entity.currentHP {
-                    Text("HP: \(entity.expressionHP)")
+                    Text("LVL: \(entity.expressionHP)")
                         .font(.subheadline)
                         .foregroundStyle(.red)
                 } else {
-                    Text("HP: \(entity.currentHP)")
+                    Text("LVL: \(entity.currentHP)")
                         .font(.subheadline)
                         .foregroundStyle(.red)
                 }
