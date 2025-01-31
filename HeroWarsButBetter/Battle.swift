@@ -76,6 +76,12 @@ final class Battle {
         case 0:
             return .draw
         case 1:
+            if undefeatedTeams[0] == "Enemy" {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    SoundsPlayer.shared.playLost()
+                })
+            }
+            print("here")
             return .won(team: undefeatedTeams[0])
         default:
             return .undecided

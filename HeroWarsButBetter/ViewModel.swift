@@ -58,3 +58,39 @@ final class ViewModel: ObservableObject {
         redraw?()
     }
 }
+
+extension ViewModel {
+    static let levels = [
+        ViewModel(map: Map(heightMap: [
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+        ]), entities: [
+            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "Player", fullHP: 2, expressionHP: "4 - 2"),
+            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 2, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 3, expressionHP: "2 - 1"),
+            Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 3, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 1, expressionHP: "2*3 - 3"),
+        ]),
+        ViewModel(map: Map(heightMap: [
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1],
+        ]), entities: [
+            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "Player", fullHP: 2, expressionHP: "4 - 2"),
+            Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 4, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 1, expressionHP: "2 - 1"),
+            Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 3, expressionHP: "2*3 - 3"),
+        ]),
+    ViewModel(map: Map(heightMap: [
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1],
+        ]), entities: [
+            Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "Player", fullHP: 2, expressionHP: "4 - 2"),
+            Entity(sprite: "Rogue", startPosition: Vector3D(x: 1, y: 4, z: 1), range: 3, maxHeightDifference: 1, team: "Enemy", fullHP: 1, expressionHP: "2 - 1"),
+            Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1), range: 4, attackRange: 3, team: "Enemy", fullHP: 3, expressionHP: "2*3 - 3"),
+        ])
+    ]
+}

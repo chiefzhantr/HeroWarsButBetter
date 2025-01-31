@@ -22,9 +22,21 @@ struct EntityView: View {
                 .foregroundStyle(.white)
             Text("\(entity.currentAction?.description ?? "Idle")")
                 .foregroundStyle(.red)
-            Text("HP: \(entity.currentHP)/###")
-                .font(.subheadline)
-                .foregroundStyle(.red)
+            if entity.team == "Player" {
+                Text("HP: \(entity.fullHP)")
+                    .font(.subheadline)
+                    .foregroundStyle(.red)
+            } else {
+                if entity.fullHP == entity.currentHP {
+                    Text("HP: \(entity.expressionHP)")
+                        .font(.subheadline)
+                        .foregroundStyle(.red)
+                } else {
+                    Text("HP: \(entity.currentHP)")
+                        .font(.subheadline)
+                        .foregroundStyle(.red)
+                }
+            }
             if viewModel.currentAction == nil && entity.hasActed == false && entity.team == "Player" && viewModel.battle.activeTeam == "Player" {
                 HStack {
                     Button("Move") {

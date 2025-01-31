@@ -9,34 +9,10 @@ import SwiftUI
 import SpriteKit
 
 struct ContentView: View {
-    @StateObject var viewModel = ViewModel(map: Map(heightMap: [
-//            [1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1],
-//            [1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1],
-//            [1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 2, 1],
-//            [1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1],
-//            [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1],
-//            [1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1],
-//            [1, 1, 1, 2, 1, 1, 1, 1, 2, 3, 2, 1, 1],
-//            [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1],
-//            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1],
-//            [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1],
-//            [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1],
-//            [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1],
-//            [1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1],
-//            [1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1],
-//            [1, 1, 1, 1, 1, 2, 3, 2, 1, 1, 1, 2, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1],
-    ]), entities: [
-        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 1, z: 1), range: 3, maxHeightDifference: 1, team: "AI"),
-        Entity(sprite: "Knight", startPosition: Vector3D(x: 1, y: 4, z: 1), range: 3, maxHeightDifference: 1, team: "AI"),
-        Entity(sprite: "Rogue", startPosition: Vector3D(x: 4, y: 0, z: 1), range: 4, attackRange: 3, team: "Player"),
-    ])
-    
+    @StateObject var viewModel: ViewModel = ViewModel.levels[0]
     let scene = GameScene()
+    
+    init(viewModel: ViewModel = ViewModel.levels[0]) {}
     
     var body: some View { 
         ZStack {

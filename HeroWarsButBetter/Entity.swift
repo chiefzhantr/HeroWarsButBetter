@@ -14,19 +14,23 @@ final class Entity {
     var currentAction: Action?
     let range: Int
     let maxHeightDifference: Int
-    var fullHP = 10
+    var fullHP: Int
+    let expressionHP: String
     lazy var currentHP = fullHP
     let attackRange: Int
     let team: String
     var hasActed = false
+    let soundsPlayer = SoundsPlayer()
     
-    init(sprite: String, startPosition: Vector3D, range: Int = Int.max, maxHeightDifference: Int = Int.max, attackRange: Int = 1, team: String = "") {
+    init(sprite: String, startPosition: Vector3D, range: Int = Int.max, maxHeightDifference: Int = Int.max, attackRange: Int = 1, team: String = "", fullHP: Int = 1, expressionHP: String = "1") {
         self.position = startPosition
         self.sprite = sprite
         self.range = range
         self.maxHeightDifference = maxHeightDifference
         self.attackRange = attackRange
         self.team = team
+        self.fullHP = fullHP
+        self.expressionHP = expressionHP
     }
     
     func copy() -> Entity {
